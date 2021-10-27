@@ -11,18 +11,14 @@ Documentation for Vroom Vroom Dashboard.
 ## To run: 
 * Prequisite: python3.9, pip21.3
 
-1. Create python virtualenv 
-```python -m venv .vroom```
-2. Activate virtualenv 
-```.vroom\Scripts\activate.bat```
-3. Install python dependencies required for backend. 
-```pip install -r requirements.txt```
-4. Install npm dependencies required for frontend.
-```npm install```
-5. Build tailwindcss 
-```npm run build-css``` 
-6. Start flask server 
-```flask run``` 
+1. Create python virtualenv: ```python -m venv .vroom```
+2. Activate virtualenv:
+    * For windows: ```.vroom\Scripts\activate.bat``` 
+    * For Mac/Linux: ```source .vroom/bin/activate``` 
+3. Install python dependencies required for backend: ```pip install -r requirements.txt```
+4. Install npm dependencies required for frontend: ```npm install```
+5. Build tailwindcss: ```npm run build-css``` 
+6. Start flask server: ```flask run``` 
 
 Dashboard should be avail at: ```localhost:5000```
 

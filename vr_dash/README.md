@@ -1,6 +1,6 @@
-# GreenSG_03
-ICT2103 Database Project. 
-Dashboard application for nea e-bin tracker. 
+# Vroom Vroom
+ICT2x01 Vroom Vroom Project. 
+Dashboard application for Vroom Vroom Dashboard 
 
 
 ## To run: 

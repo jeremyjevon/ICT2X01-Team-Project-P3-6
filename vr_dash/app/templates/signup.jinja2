@@ -1,0 +1,124 @@
+{% extends "login_layout.jinja2" %}
+
+
+{% block content %}
+<div class="login-card">
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <div class="px-4 py-4">
+          <h1 class="text-gray-700 text-center mb-3 text-2xl font-semibold">🌳 NEA 🌳
+          </h1>
+          <h3 class="text-gray-500 text-center mb-3 text-xl font-semibold"> Sign Up </h3>
+      </div>
+      <div class="form-wrapper">
+        {% for message in get_flashed_messages() %}
+          <div class="alert alert-warning">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert">
+              x
+            </button>
+            {{ message }}
+          </div>
+        {% endfor %}
+
+        <form method="POST" action="/signup">
+          {{ form.csrf_token }}
+
+          <div class="relative w-full mb-3">
+            <fieldset class="name">
+              {{ form.name.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.name(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='John smith', style='transition: all 0.15s ease 0s')}}
+              {% if form.name.errors %}
+                <ul class="errors">
+                  {% for error in form.email.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div>
+
+          <div class="relative w-full mb-3">
+            <fieldset class="email">
+              {{ form.email.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.email(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='youremail@example.com', style='transition: all 0.15s ease 0s') }}
+              {% if form.email.errors %}
+                <ul class="errors">
+                  {% for error in form.email.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div> 
+
+          <div class="relative w-full mb-3">
+            <fieldset class="password">
+              {{ form.password.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.password(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='Password', style='transition: all 0.15s ease 0s') }}
+              {% if form.password.errors %}
+                <ul class="errors">
+                  {% for error in form.password.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div>
+
+          <div class="relative w-full mb-3">
+            <fieldset class="confirm">
+              {{ form.confirm.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.confirm(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='Confirm Password', style='transition: all 0.15s ease 0s') }}
+              {% if form.confirm.errors %}
+                <ul class="errors">
+                  {% for error in form.confirm.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div>
+
+          <div class="relative w-full mb-3">
+            <fieldset class="Region">
+              {{ form.region.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.region(placeholder='Region here') }}
+            </fieldset>
+          </div>
+
+          <div class="relative w-full mb-3">
+            <fieldset class="Role">
+              {{ form.role.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.role(placeholder='Role here') }}
+            </fieldset>
+          </div>
+          
+          <div class="relative w-full mb-3">
+            <fieldset class="Rank">
+              {{ form.rank.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.rank(placeholder='Rank here') }}
+            </fieldset>
+          </div>
+
+          <div class="text-center mt-6">
+            <div class="submit-button">
+              {{ form.submit(class='bg-green-700 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full',
+              style='transition: all 0.15s ease 0s;') }}
+            </div>
+          </div>
+
+        </form>
+
+        <div class="login-signup">
+          <div class="class-1/2 text-center">
+            <span>Already have an account?</span> 
+              <a href="{{ url_for('auth_bp.login') }}">Log in.</a>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div> 
+
+{% endblock %}

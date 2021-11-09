@@ -1,0 +1,22 @@
+S generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+
+# Byte-compiled / optimized / DLL files #
+#########################################
+__pycache__/
+*.py[cod]
+
+# virtualenv # 
+##############
+.venv 
+
+# Dependency directories #
+##########################
+node_modules/
+
+# Sensitive # 
+#############
+.env

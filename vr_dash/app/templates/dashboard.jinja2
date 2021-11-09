@@ -1,0 +1,12 @@
+{% extends "dash_layout.jinja2" %}
+
+{% block loginuser %}
+
+  {% if current_user.is_authenticated %}
+    <h1 class="text-3xl text-gray-700 pb-6 font-semibold">🚮 Welcome {{ current_user.name }}!</h1>
+    <h3 class="text-1xl text-gray-600 pb-6 font-semibold"> Towards a greener tomorrow</h3>
+   
+    <a href="{{ url_for('main_bp.logout') }}">Log out</a>
+  {% endif %}
+
+{% endblock %}

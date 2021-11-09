@@ -1,0 +1,65 @@
+{% extends "login_layout.jinja2" %}
+
+
+{% block content %}
+<div class="login-card">
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <!-- Form title heading --> 
+      <div class="px-4 py-4">
+          <h1 class="text-gray-700 text-center mb-3 text-2xl font-semibold"> 🤖 Vroom 🤖
+          </h1>
+          <h3 class="text-gray-500 text-center mb-3 text-xl font-semibold"> Sign In </h3>
+      </div>
+      <div class="form-wrapper">
+        <form method="POST" action="/login">
+          {{ form.csrf_token }}
+
+          <div class="relative w-full mb-3">
+            <fieldset class="email">
+              {{ form.email.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.email(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='youremail@example.com', style='transition: all 0.15s ease 0s') }}
+              {% if form.email.errors %}
+                <ul class="errors">
+                  {% for error in form.email.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div>
+
+          <div class="relative w-full mb-3">
+            <fieldset class="password">
+              {{ form.password.label(class='block uppercase text-gray-800 text-xs font-bold mb-2') }}
+              {{ form.password(class='border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full', 
+              placeholder='Password', style='transition: all 0.15s ease 0s') }}
+              {% if form.email.errors %}
+                <ul class="errors">
+                  {% for error in form.password.errors %}
+                    <li>{{ error }}</li>{% endfor %}
+                </ul>
+              {% endif %}
+            </fieldset>
+          </div>
+
+          <div class="submit-button">
+            {{ form.submit(class='bg-blue-500 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full',
+              style='transition: all 0.15s ease 0s;') }}
+          </div>
+
+          <div class="login-signup">
+            <div class="class-1/2 text-center">
+              <span>Don't have an account?</span>
+              <br/>
+              <a href="{{ url_for('auth_bp.signup') }}">Sign up.</a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      </div> 
+    </div> 
+  </div>
+</div>
+
+{% endblock %}

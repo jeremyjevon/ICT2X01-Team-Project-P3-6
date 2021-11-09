@@ -17,6 +17,11 @@ Dashboard application for Vroom Vroom Dashboard
 
 Dashboard should be avail at: ```localhost:5000```
 
+## Dev Mode: 
+* Assume python libraries already installed and in virtualenv. 
+1. Run flask server: ```flask run``` 
+5. Run Tailwind in (JIT-Mode): ```npm run build-watch``` 
+
 ## Technologies used: 
 * Frontend: Node + Tailwindcss 
 * Backend: Flask 

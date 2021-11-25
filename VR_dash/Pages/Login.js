@@ -1,13 +1,8 @@
 import { useNavigation } from "@react-navigation/core";
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { auth } from "../firebase";
-
-/* 
-TODO: 
-1) Style this ugly ass page - MEDIUM
-*/
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -100,51 +95,6 @@ const LoginScreen = () => {
           </TouchableOpacity>
       </View>
     </View>
-    // <View style={styles.container}>
-    //   <View style={styles.systemTitleContainer}>
-    //     <Text style={styles.systemTitleText}>Vroom Vroom</Text>
-    //   </View>
-    //   <View style = {{
-    //     flex:10,
-    //   }}>
-    //     <View style={styles.profileImgContainer}>
-    //         {/* <Image
-    //           source={require("../assets/company.png")}
-    //           style={styles.profileImg}
-    //         /> */}
-    //     </View>
-    //     <View style={styles.welcomeBackContainer}>
-    //       <Text style={styles.welcomeBackText}>.</Text>
-    //     </View>
-    //     <View style={styles.inputContainer}>
-    //       <View style={styles.inputContainerBox}>
-    //         <TextInput
-    //           style={styles.input}
-    //           placeholder="Email"
-    //           value={email}
-    //           onChangeText={(text) => setEmail(text)}
-    //         />
-    //         <TextInput
-    //           style={styles.input}
-    //           placeholder="Password"
-    //           value={password}
-    //           onChangeText={(text) => setPassword(text)}
-    //           secureTextEntry
-    //         />
-    //       </View>
-    //     </View>
-    //     <View style={styles.loginButtonContainer}>
-    //       <TouchableOpacity onPress={handleLogin} style={styles.button}>
-    //         <Text style={styles.buttonText}>Login</Text>
-    //       </TouchableOpacity>
-    //     </View>
-    //     <View style={styles.loginButtonContainer}>
-    //       <TouchableOpacity onPress={handleSignUp} style={styles.button}>
-    //         <Text style={styles.buttonText}>Register</Text>
-    //       </TouchableOpacity>
-    //     </View>
-    //   </View>
-    // </View>
   );
 };
 

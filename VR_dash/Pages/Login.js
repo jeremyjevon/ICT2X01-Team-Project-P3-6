@@ -154,10 +154,11 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     borderWidth: 1,
     borderColor: "#FFF",
-    backgroundColor: "#444",
+    backgroundColor: "#FFF",
   },
   inputText: {
     fontFamily: "sans-serif-light",
+    marginBottom:5,
     fontSize: 15,
     color: "#FFF",
   },

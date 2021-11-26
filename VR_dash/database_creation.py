@@ -18,7 +18,7 @@ Therefore, most getters and setters methods will be through the database.
 
 This file has no link to our main file, which is why it is done in Python3.
 
-Change auth_id in line 40 to your unique key listed in lines 33 - 37!!!
+Change auth_id in line 41 to your unique key listed in lines 32 - 36!!!
 '''
 
 #Do add this file into .gitignore so it will not be uploaded onto the repo

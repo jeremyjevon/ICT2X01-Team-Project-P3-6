@@ -17,7 +17,7 @@ Retrieve values and put them into the following variables
   {thirdPositionName}, {thirdPositionEXP};
   {fourthPositionName}, {fourthPositionEXP};
 */
-const LeaderboardScreen = ({ navigation }) => {
+const LeaderboardScreen = ({  route, navigation }) => {
   const navigate = useNavigation();
   const handleSignOut = () => {
     auth
@@ -62,7 +62,10 @@ const LeaderboardScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
           <View style={styles.homeContainer}>
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>

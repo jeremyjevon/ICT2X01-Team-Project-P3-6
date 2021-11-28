@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useTable } from 'react-table'
 import MOCK_DATA from './MOCK_DATA.json'
 import { COLUMNS } from './columns'
@@ -14,6 +14,7 @@ import {
 } from "react-native";
 
 import { auth } from "../../firebase";
+  
 
 const StageScreen = ({ navigation }) => {
   const navigate = useNavigation();
@@ -38,21 +39,21 @@ const StageScreen = ({ navigation }) => {
         getTableBodyProps,
         headerGroups,
         rows,
-        prepareRow,    
+        prepareRow,  
     } = tableInstance
-  return (
-    
+  return (    
     <View style={styles.container}>
-        <Text>Stage Page</Text>
-      <table {...getTableProps()}>
+        <h1>Stage Page</h1>
+      <table {...getTableProps()}>          
             <thead>
                 {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => (
                         <th {...column.getHeaderProps()}>{column.render('Header')}</th>
                     ))}
+                    <th>Select</th>
                 </tr>
-                ))}
+                ))}                
             </thead>
             <tbody {...getTableBodyProps()}>
                 {rows.map((row) => {
@@ -62,6 +63,7 @@ const StageScreen = ({ navigation }) => {
                             {row.cells.map((cell) => {
                                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                             })}
+                            <td><button>Select Stage</button></td>
                         </tr>
                     )                
                 })}

@@ -6,13 +6,34 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
+import moment from "moment";
 
 
 import db, { auth } from "../../firebase";
-/*
-The controller of the leaderboard will be done when updating the EXP of the students (After they have completed a stage)
-*/
+
 const LeaderboardScreen = ({ navigation }) => {
+
+  const [currentDate, setCurrentDate] = useState("");
+
+  function getCurrentTime() {
+    var dateCurrentMoment = moment().format("DD/MM/YYYY hh:mm:ss a");
+    setCurrentDate(dateCurrentMoment);
+  };
+
+  const [lastUpdatedDate, setLastUpdatedDate] = useState("");
+
+  function getLastUpdatedTime() {
+    console.log(">>>");
+    var dateMoment;
+    db.collection(auth.currentUser.uid)
+      .doc("Leaderboard")
+      .get()
+      .then((documentSnapshot) => documentSnapshot.data().last_updated_time)
+      .then((last_updated_time) => {
+        setLastUpdatedDate(last_updated_time);
+      })
+  };
+
   const [onLoadfnameText_firstPlace, setfnameText_firstPlace] = useState("");
   const [onLoadfnameText_secondPlace, setfnameText_secondPlace] = useState("");
   const [onLoadfnameText_thirdPlace, setfnameText_thirdPlace] = useState("");
@@ -25,7 +46,8 @@ const LeaderboardScreen = ({ navigation }) => {
   const [onLoadEXPText_secondPlace, setEXPText_secondPlace] = useState("");
   const [onLoadEXPText_thirdPlace, setEXPText_thirdPlace] = useState("");
   const [onLoadEXPText_fourthPlace, setEXPText_fourthPlace] = useState("");
-  const getfname = () => {
+
+  const getLeaderboard = () => {
     db.collection(auth.currentUser.uid)
       .doc("Leaderboard")
       .collection("Ranking")
@@ -58,7 +80,9 @@ const LeaderboardScreen = ({ navigation }) => {
   
 
   const onScreenLoad = () => {
-    getfname();
+    getLeaderboard();
+    getCurrentTime();
+    getLastUpdatedTime();
   };
 
   useEffect(() => {
@@ -79,6 +103,8 @@ const LeaderboardScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headingText}>Leaderboard</Text>
+        <Text style={styles.timeText}>Current Time: {currentDate}</Text>
+        <Text style={styles.timeText}>Last Updated Time: {lastUpdatedDate}</Text>
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.leaderboardContainer}>
@@ -151,6 +177,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#FFF",
     textDecorationLine:"underline",
+  },
+  timeText:{
+    fontFamily: "sans-serif-light",
+    fontSize: 20,
+    color: "#FFF",
   },
   leaderboardContainer: {
     width: "50%",

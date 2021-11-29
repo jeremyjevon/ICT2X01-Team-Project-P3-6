@@ -11,6 +11,7 @@ import moment from "moment";
 
 import db, { auth } from "../../firebase";
 
+
 const LeaderboardScreen = ({ navigation }) => {
 
   const [currentDate, setCurrentDate] = useState("");
@@ -136,7 +137,10 @@ const LeaderboardScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
           <View style={styles.homeContainer}>
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>

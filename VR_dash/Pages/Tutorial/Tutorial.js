@@ -17,7 +17,7 @@ Are we going to actually come up with a video?
 -   Placeholder Image here works fine too
 1) Style this ugly af page - MEDIUM
 */
-const TutorialScreen = ({ navigation }) => {
+const TutorialScreen = ({ route, navigation }) => {
   const navigate = useNavigation();
   const handleSignOut = () => {
     auth
@@ -35,11 +35,20 @@ const TutorialScreen = ({ navigation }) => {
       <View style={styles.middleContainer}>
           <View style = {styles.embeddedVideoContainer}> <Text style = {{color:"#fff"}}>Embedded Video HERE</Text></View>
       </View>
-      <View style={styles.btmContainer}>
-        <Button
-          title="Back to Homepage"
-          onPress={() => navigation.navigate("HomeScreen")}/>
-          <Button title="Logout" onPress={handleSignOut}/>
+      <View style={styles.bottomContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+          <View style={styles.homeContainer}>
+            <Text style={styles.homeText}>Back to Homepage</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleSignOut}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Logout</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -78,6 +87,36 @@ const styles = StyleSheet.create({
     borderColor:"#FFF",
     justifyContent:"center",
     alignItems:"center",
+  },
+  homeContainer: {
+    height: 50,
+    width: 500,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 5,
+    backgroundColor:"#444",
+    borderRadius:10,
+  },
+  homeText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 30,
+    color: "#fff",
+  },
+  logoutContainer: {
+    height: 50,
+    width: 500,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  logoutText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 30,
+    color: "#fff",
   },
 });
 

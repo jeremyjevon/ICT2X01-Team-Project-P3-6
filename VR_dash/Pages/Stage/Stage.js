@@ -16,7 +16,7 @@ import {
 import { auth } from "../../firebase";
   
 
-const StageScreen = ({ navigation }) => {
+const StageScreen = ({ route, navigation }) => {
   const navigate = useNavigation();
   const handleSignOut = () => {
     auth
@@ -71,7 +71,9 @@ const StageScreen = ({ navigation }) => {
         </table>
       <Button
         title="Back to Homepage"
-        onPress={() => navigation.navigate("HomeScreen")}
+        onPress={() => navigation.navigate("HomeScreen", {
+          selectedStudent: route.params.selectedStudent,
+        })}
       />
       <Button title="Logout" onPress={handleSignOut} />
     </View>

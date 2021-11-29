@@ -1,24 +1,96 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
   Text,
-  Button,
   View,
-  Image,
   TouchableOpacity,
 } from "react-native";
+import moment from "moment";
 
-import { auth } from "../../firebase";
-/*
-Retrieve values and put them into the following variables
-  {firstPositionName}, {firstPositionEXP};
-  {secondPositionName}, {secondPositionEXP};
-  {thirdPositionName}, {thirdPositionEXP};
-  {fourthPositionName}, {fourthPositionEXP};
-*/
-const LeaderboardScreen = ({ navigation }) => {
+
+import db, { auth } from "../../firebase";
+
+const LeaderboardScreen = ({ route, navigation }) => {
+
+  const [currentDate, setCurrentDate] = useState("");
+
+  function getCurrentTime() {
+    var dateCurrentMoment = moment().format("DD/MM/YYYY hh:mm:ss a");
+    setCurrentDate(dateCurrentMoment);
+  };
+
+  const [lastUpdatedDate, setLastUpdatedDate] = useState("");
+
+  function getLastUpdatedTime() {
+    console.log(">>>");
+    var dateMoment;
+    db.collection(auth.currentUser.uid)
+      .doc("Leaderboard")
+      .get()
+      .then((documentSnapshot) => documentSnapshot.data().last_updated_time)
+      .then((last_updated_time) => {
+        setLastUpdatedDate(last_updated_time);
+      })
+  };
+
+  const [onLoadfnameText_firstPlace, setfnameText_firstPlace] = useState("");
+  const [onLoadfnameText_secondPlace, setfnameText_secondPlace] = useState("");
+  const [onLoadfnameText_thirdPlace, setfnameText_thirdPlace] = useState("");
+  const [onLoadfnameText_fourthPlace, setfnameText_fourthPlace] = useState("");
+  const [onLoadlnameText_firstPlace, setlnameText_firstPlace] = useState("");
+  const [onLoadlnameText_secondPlace, setlnameText_secondPlace] = useState("");
+  const [onLoadlnameText_thirdPlace, setlnameText_thirdPlace] = useState("");
+  const [onLoadlnameText_fourthPlace, setlnameText_fourthPlace] = useState("");
+  const [onLoadEXPText_firstPlace, setEXPText_firstPlace] = useState("");
+  const [onLoadEXPText_secondPlace, setEXPText_secondPlace] = useState("");
+  const [onLoadEXPText_thirdPlace, setEXPText_thirdPlace] = useState("");
+  const [onLoadEXPText_fourthPlace, setEXPText_fourthPlace] = useState("");
+
+  const getLeaderboard = () => {
+    db.collection(auth.currentUser.uid)
+      .doc("Leaderboard")
+      .collection("Ranking")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            if (doc.id == "first_place") {
+              setfnameText_firstPlace(doc.data().fname)
+              setlnameText_firstPlace(doc.data().lname)
+              setEXPText_firstPlace(doc.data().exp)
+            }
+            if (doc.id == "second_place") {
+              setfnameText_secondPlace(doc.data().fname)
+              setlnameText_secondPlace(doc.data().lname)
+              setEXPText_secondPlace(doc.data().exp)
+            }
+            if (doc.id == "third_place") {
+              setfnameText_thirdPlace(doc.data().fname)
+              setlnameText_thirdPlace(doc.data().lname)
+              setEXPText_thirdPlace(doc.data().exp)
+            }
+            if (doc.id == "fourth_place") {
+              setfnameText_fourthPlace(doc.data().fname)
+              setlnameText_fourthPlace(doc.data().lname)
+              setEXPText_fourthPlace(doc.data().exp)
+            }
+        });
+    })
+  };
+  
+
+  const onScreenLoad = () => {
+    getLeaderboard();
+    getCurrentTime();
+    getLastUpdatedTime();
+  };
+
+  useEffect(() => {
+    onScreenLoad();
+  }, []);
+
   const navigate = useNavigation();
+  
   const handleSignOut = () => {
     auth
       .signOut()
@@ -31,6 +103,8 @@ const LeaderboardScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headingText}>Leaderboard</Text>
+        <Text style={styles.timeText}>Current Time: {currentDate}</Text>
+        <Text style={styles.timeText}>Last Updated Time: {lastUpdatedDate}</Text>
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.leaderboardContainer}>
@@ -41,28 +115,31 @@ const LeaderboardScreen = ({ navigation }) => {
           </View>
           <View style={styles.leaderboardRankContainer}>
             <View style={styles.rankContainer}><Text style={styles.font}>1</Text></View>
-            <View style={styles.nameContainer}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.expContainer}><Text style={styles.font}>Exp</Text></View>
+            <View style={styles.nameContainer}><Text style={styles.font}>{onLoadfnameText_firstPlace} {onLoadlnameText_firstPlace}</Text></View>
+            <View style={styles.expContainer}><Text style={styles.font}>{onLoadEXPText_firstPlace}</Text></View>
           </View>
           <View style={styles.leaderboardRankContainer}>
             <View style={styles.rankContainer}><Text style={styles.font}>2</Text></View>
-            <View style={styles.nameContainer}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.expContainer}><Text style={styles.font}>Exp</Text></View>
+            <View style={styles.nameContainer}><Text style={styles.font}>{onLoadfnameText_secondPlace} {onLoadlnameText_secondPlace}</Text></View>
+            <View style={styles.expContainer}><Text style={styles.font}>{onLoadEXPText_secondPlace}</Text></View>
           </View>
           <View style={styles.leaderboardRankContainer}>
             <View style={styles.rankContainer}><Text style={styles.font}>3</Text></View>
-            <View style={styles.nameContainer}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.expContainer}><Text style={styles.font}>Exp</Text></View>
+            <View style={styles.nameContainer}><Text style={styles.font}>{onLoadfnameText_thirdPlace} {onLoadlnameText_thirdPlace}</Text></View>
+            <View style={styles.expContainer}><Text style={styles.font}>{onLoadEXPText_thirdPlace}</Text></View>
           </View>
           <View style={styles.leaderboardRankContainer}>
             <View style={styles.rankContainer}><Text style={styles.font}>4</Text></View>
-            <View style={styles.nameContainer}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.expContainer}><Text style={styles.font}>Exp</Text></View>
+            <View style={styles.nameContainer}><Text style={styles.font}>{onLoadfnameText_fourthPlace} {onLoadlnameText_fourthPlace}</Text></View>
+            <View style={styles.expContainer}><Text style={styles.font}>{onLoadEXPText_fourthPlace}</Text></View>
           </View>
         </View>
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
           <View style={styles.homeContainer}>
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>
@@ -103,6 +180,11 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#FFF",
     textDecorationLine:"underline",
+  },
+  timeText:{
+    fontFamily: "sans-serif-light",
+    fontSize: 20,
+    color: "#FFF",
   },
   leaderboardContainer: {
     width: "50%",

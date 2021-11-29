@@ -11,8 +11,7 @@ import moment from "moment";
 
 import db, { auth } from "../../firebase";
 
-
-const LeaderboardScreen = ({ navigation }) => {
+const LeaderboardScreen = ({ route, navigation }) => {
 
   const [currentDate, setCurrentDate] = useState("");
 

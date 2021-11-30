@@ -3,7 +3,6 @@ import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
   Text,
-  Button,
   View,
   Image,
   TouchableOpacity,
@@ -13,15 +12,9 @@ import { auth } from "../firebase";
 
 /* 
 TODO: 
-1) Get parameter from the previous page (Profile.js)
-  Based on the profileName/studentName, retrieve records from firestore
-  - EXP
-  - All the stuff uh basically
-  - So the home page has to be like dynamically coded, unless all 4 students we want to display the same thing just to satisfy the whitebox test
-  - OR instead of the actual name, we can put stuf like [StudentName] as placeholders instead ? 
 2) Style this ugly ass page - LOW
 */
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
   const navigate = useNavigation();
   const handleSignOut = () => {
     auth
@@ -33,14 +26,76 @@ const HomeScreen = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <Text>Hello World!</Text>
-      <Button title="Tutorial.js" onPress={() => navigation.navigate("TutorialScreen")}/>
-      <Button title="Stage.js" onPress={() => navigation.navigate("StageScreen")}/>
-      <Button title="Leaderboard.js" onPress={() => navigation.navigate("LeaderboardScreen")}/>
-      <Button title="Dashboard.js" onPress={() => navigation.navigate("DashboardScreen")}/>
-      <Button title="Back to profile.js" onPress={() => navigation.navigate("ProfileScreen")}/>
-      <Button title="ALERT" onPress = {() => alert("Pressed!")}/>
-      <Button title="Logout" onPress={handleSignOut}/>
+      <View style={styles.topContainer}>
+        <Text style={styles.headingText}>
+          Hello {route.params.selectedStudent} !
+        </Text>
+      </View>
+      <View style={styles.middleContainer}>
+        <View style={styles.buttonImagesContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("TutorialScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+            <Image
+              style={styles.buttonImages}
+              source={require("../assets/HomepageImg/manual.png")}
+            />
+            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Tutorial</Text></View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonImagesContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate("StageScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+            <Image
+              style={styles.buttonImages}
+              source={require("../assets/HomepageImg/level-up.png")}
+            />
+            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Stages</Text></View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonImagesContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("LeaderboardScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+            <Image
+              style={styles.buttonImages}
+              source={require("../assets/HomepageImg/leaderboard.png")}
+            />
+            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Leaderboard</Text></View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonImagesContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("DashboardScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+            <Image
+              style={styles.buttonImages}
+              source={require("../assets/HomepageImg/dumbbell.png")}
+            />
+            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Dashboard</Text></View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.bottomContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Switch User</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleSignOut}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Logout</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -48,8 +103,65 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#000",
   },
-
+  topContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  middleContainer: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  bottomContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  headingText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 50,
+    color: "#FFF",
+  },
+  logoutContainer: {
+    height: 50,
+    width: 500,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  logoutText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 30,
+    color: "#fff",
+  },
+  buttonImagesContainer:{
+    alignItems: "center",
+    justifyContent: "center",
+    height: 300,
+    width: 300,
+    borderWidth:1,
+    borderColor:"#FFF",
+  },
+  buttonImages: {
+    height: 250,
+    width: 250,
+    tintColor:"#FFF",
+  },
+  buttonText:{
+    fontFamily: "sans-serif-light",
+    fontSize: 30,
+    color: "#FFF",
+  },
+  buttonTextContainer:{
+    marginTop:10,
+    alignItems: "center",
+  },
 });
 
 export default HomeScreen;

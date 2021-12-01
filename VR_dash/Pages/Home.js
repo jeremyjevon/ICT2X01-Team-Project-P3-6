@@ -85,6 +85,11 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
+       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Start Game</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Switch User</Text>

@@ -86,7 +86,7 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-q       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
+       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Start Game</Text>
           </View>

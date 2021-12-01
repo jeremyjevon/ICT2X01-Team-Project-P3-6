@@ -6,6 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Linking, 
 } from "react-native";
 
 import { auth } from "../firebase";
@@ -85,7 +86,7 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
-       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
+q       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Start Game</Text>
           </View>

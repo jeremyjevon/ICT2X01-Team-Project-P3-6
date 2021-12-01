@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "unused": "expo start",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "start-play": "(cd tcpServer && node play.js COM6 9600) & npm run start"
   },
   "dependencies": {
     "@react-navigation/core": "^6.1.0",

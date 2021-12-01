@@ -1,0 +1,20 @@
+{
+  "name": "tcpserver",
+  "version": "1.0.0",
+  "description": "Let's play server. ",
+  "main": "play.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ICT2X01|ICT2104"
+  ],
+  "author": "chek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "serialport": "^9.2.8",
+    "socketio": "^1.0.0"
+  }
+}

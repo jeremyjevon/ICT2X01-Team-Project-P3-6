@@ -6,6 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Linking, 
 } from "react-native";
 
 import { auth } from "../firebase";

@@ -33,8 +33,8 @@
     color: yellow;
   }
   #status-val {
-    font-size: 69px;
-    color: royalblue;
+    font-size: 32px;
+    color: green;
   }
   #blackbg {
     background-color: black;
@@ -89,8 +89,8 @@
   <div id="vroom"></div>
   <div class="row">
     <div id="text" class="col-6"></div>
-    <div id="status" class="col-6">Status
-      <div id="status-val"> test </div>
+    <div id="status" class="col-6">Status:
+      <div id="status-val"></input>
     </div>
   </div>
   <div id="give-me-space">
@@ -135,9 +135,40 @@
 
 <!-- Scripts -->
 <script>
+function chekmsg(data) {
+  if (data == "start"){
+    commandmsg = "Moving forward! Watch out!"
+  }
+  else if (data == "speed"){
+    commandmsg = "Full speed ahead! All clear!"
+  }
+  else if (data == "stop"){
+    commandmsg = "Car is stopping."
+  }
+  else if (data == "reve"){
+    commandmsg = "Reversing. Beep.. Beep.."
+  }
+  else if (data == "left"){
+    commandmsg = "Turning left now!"
+  }
+  else if (data == "right"){
+    commandmsg = "Turning right now!"
+  }
+  else if (data == "slow"){
+    commandmsg = "Slowing down... Hang Tight!"
+  }
+  else {
+    commandmsg = "I don't understnad that command..."
+  }
+  var statusmsg = document.getElementById("status-val");
+  statusmsg.innerHTML = commandmsg;
+}
 function send_msg(data) {
+  chekmsg(data); 
   var txt = document.getElementById("msg").value;
   txt = txt + data;
+  checkmsg(txt);
+
   socket.emit('send', { Data: txt} );
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { COLUMNS } from './columns'
 import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
@@ -16,21 +15,12 @@ import {
 
 import db, { auth } from "../../firebase";
 
-const LeaderboardScreen = ({ route, navigation }) => {
-  const [onLoadfnameText_firstPlace, setfnameText_firstPlace] = useState("");
-  const [onLoadfnameText_secondPlace, setfnameText_secondPlace] = useState("");
-  const [onLoadfnameText_thirdPlace, setfnameText_thirdPlace] = useState("");
-  const [onLoadfnameText_fourthPlace, setfnameText_fourthPlace] = useState("");
-  const [onLoadEXPText_firstPlace, setEXPText_firstPlace] = useState("");
-  const [onLoadEXPText_secondPlace, setEXPText_secondPlace] = useState("");
-  const [onLoadEXPText_thirdPlace, setEXPText_thirdPlace] = useState("");
-  const [onLoadEXPText_fourthPlace, setEXPText_fourthPlace] = useState("");
-  const [stage, set_stage] = useState("");
+const StageScreen = ({ route, navigation }) => {
   const[state, setState] = useState({
     stages: null
   })
 
-  const getLeaderboard = () => {
+  const getStage = () => {
     db.collection(auth.currentUser.uid)
     .doc("StageList")
     .collection("Stage")
@@ -42,14 +32,11 @@ const LeaderboardScreen = ({ route, navigation }) => {
             stages1.push(data)
         });
         setState({ stages: stages1})
-        console.log("LOLLOLOL")
-        console.log("Updated", state)
     })
-  };
-  
+  };  
 
   const onScreenLoad = () => {
-    getLeaderboard();
+    getStage();
   };
 
   useEffect(() => {
@@ -72,21 +59,20 @@ const LeaderboardScreen = ({ route, navigation }) => {
         <Text style={styles.headingText}>Stage</Text>
       </View>
       <View style={styles.middleContainer}>
-        <View style={styles.leaderboardContainer}>
-          <View style={styles.leaderboardHeaderContainer}>
-            <View style={styles.rankContainer}><Text style={styles.font}>No.</Text></View>
-            <View style={styles.nameContainer}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.expContainer}><Text style={styles.font}>Select</Text></View>
+        <View style={styles.stage_container}>
+          <View style={styles.stage_header_container}>
+            <View style={styles.stage_id}><Text style={styles.font}>No.</Text></View>
+            <View style={styles.stage_name}><Text style={styles.font}>Name</Text></View>
+            <View style={styles.stage_view}><Text style={styles.font}>Select</Text></View>
           </View>         
-            {
-              
+            {              
               state.stages &&
               state.stages.map( stage =>{
                 return (
-                  <View style={styles.leaderboardRankContainer}>,
-                  <View style={styles.rankContainer}><Text style={styles.font}>{stage.id}</Text></View>,
-                  <View style={styles.nameContainer}><Text style={styles.font}>{stage.name}</Text></View>,
-                  <View style={styles.expContainer}><Text style={styles.font}>View</Text></View>,
+                  <View style={styles.stage_inner}>
+                  <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
+                  <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
+                  <View style={styles.stage_view}><Text style={styles.font}><button>View</button></Text></View>
                   </View>
                 )
               })
@@ -145,7 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#FFF",
   },
-  leaderboardContainer: {
+  stage_container: {
     width: "50%",
     height: "90%",
     borderWidth: 1,
@@ -153,33 +139,33 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
   },
-  leaderboardHeaderContainer: {
+  stage_header_container: {
     flexDirection:"row",
     justifyContent:"space-between",
     borderWidth: 1,
     borderColor: "#FFF",
     flex: 1,
   },
-  leaderboardRankContainer: {
+  stage_inner: {
     width: "100",
     flexDirection:"row",
     flex: 2,
   },
-  rankContainer: {
+  stage_id: {
     flex:1,
     justifyContent:"center",
     alignItems:"center",
     borderWidth:1,
     borderColor:"#777",
   },
-  nameContainer: {
+  stage_name: {
     flex:4,
     justifyContent:"center",
     borderWidth:1,
     borderColor:"#777",
     paddingLeft:10,
   },
-  expContainer: {
+  stage_view: {
     flex:1,
     justifyContent:"center",
     alignItems:"center",
@@ -223,4 +209,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LeaderboardScreen;
+export default StageScreen;

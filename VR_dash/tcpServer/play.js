@@ -1,23 +1,24 @@
 /*
-* Bluetooth Serial Connection to Web. 
+** Bluetooth Serial Connection to Web. **
+ * Serve from port 8888
  Todo: 
  * Integration with vr dash app
 */
- 
+
+// Configuration for serial port connection
 var serport      = "/dev/tty.HC-06";
 var rate         = 9600;
 var serports     = [];
 var fs           = require('fs');
 const SerialPort = require('serialport');
- 
+
 var express = require('express'),
     app    = express(),
     server = require('http').Server(app),
     io     = require('socket.io')(server),
     port   = 8888;
- 
+
 server.listen(port, () => console.log('Server Listening on port' + port))
- 
  
 app.get('*', function(req, res){
   fs.readFile(__dirname + '/index.html','utf8', function (err, data) {

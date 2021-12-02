@@ -6,11 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
-<<<<<<< Updated upstream
-  Linking, 
-=======
   Linking,
->>>>>>> Stashed changes
 } from "react-native";
 
 import { auth } from "../firebase";

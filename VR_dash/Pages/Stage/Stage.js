@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Modal from './Modal';
 import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
@@ -15,7 +16,14 @@ import {
 
 import db, { auth } from "../../firebase";
 
+const BUTTON_WRAPPER_STYLES = {
+  position: 'relative',
+  zIndex: 1
+}
+
+
 const StageScreen = ({ route, navigation }) => {
+  const [isOpen, setIsOpen] = useState(false)
   const[state, setState] = useState({
     stages: null,
   })
@@ -79,7 +87,14 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_inner}>
                   <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                  <View style={styles.stage_view}><Text style={styles.font}><button>View</button></Text></View>
+                  <View style={styles.stage_view}><Text style={styles.font}>
+                  <div style={BUTTON_WRAPPER_STYLES}>
+                    <button onClick={() => setIsOpen(true)}>Open Model</button>
+                    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                      Fancy Model
+                      </Modal>
+                  </div>
+                    </Text></View>
                   </View>
                 )
               })

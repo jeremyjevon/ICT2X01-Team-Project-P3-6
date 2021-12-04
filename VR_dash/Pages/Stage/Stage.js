@@ -90,24 +90,29 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
                   <View style={styles.stage_view}>
                     <div style={BUTTON_WRAPPER_STYLES}>
-                      <button onClick={() => setIsOpen(true)}>View Details</button>
-                      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-                      <View style={styles.container}>
-                        <View style={styles.topContainer}>
-                          <Text style={styles.headingText}>Stage Details</Text>
-                        </View>                     
-                          <View style={styles.stage_inner}>
-                          <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
-                          <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                          <Image style={styles.StageImg} source={require("../../assets/StageImg/" + stage.img)}/>
-                          </View>
-                          <TouchableOpacity>
-                          <View style={styles.logoutContainer}>
-                            <Text style={styles.logoutText}>Play</Text>
-                          </View>
-                          </TouchableOpacity>
-                      </View>
-                      </Modal>
+                    <TouchableOpacity onPress={() => setIsOpen(true)}>
+                          <View style={styles.detailsContainer}>
+                            <Text style={styles.detailsText}>View Details</Text>
+                          </View> 
+                    </TouchableOpacity>  
+                            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                            <View style={styles.container}>
+                              <View style={styles.topContainer}>
+                                <Text style={styles.headingText}>Stage Details</Text>
+                              </View>                     
+                                <View style={styles.stage_inner}>
+                                <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
+                                <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
+                                <Image style={styles.StageImg} source={require("../../assets/StageImg/" + stage.img)}/>
+                                </View>
+                                <TouchableOpacity>
+                                <View style={styles.logoutContainer}>
+                                  <Text style={styles.logoutText}>Play</Text>
+                                </View>
+                                </TouchableOpacity>
+                            </View>
+                            </Modal>
+                                         
                     </div>
                   </View>
                   </View>
@@ -237,6 +242,19 @@ const styles = StyleSheet.create({
   logoutText: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
+    color: "#fff",
+  },
+  detailsContainer: {
+    height: 50,
+    width: 100,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  detailsText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 15,
     color: "#fff",
   },
   font: {

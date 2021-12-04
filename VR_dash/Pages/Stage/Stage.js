@@ -6,12 +6,6 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-// 1) change to stage, not all details
-// 2) Add more details button
-// 3) retrieve more details
-// 4) Add play stage button
-// =========================
-// 1) Create stage page
 
 import db, { auth } from "../../firebase";
 

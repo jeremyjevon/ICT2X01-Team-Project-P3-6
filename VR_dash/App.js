@@ -12,6 +12,7 @@ import Tutorial from "./Pages/Tutorial/Tutorial";
 import Stage from "./Pages/Stage/Stage";
 import CreateStage from "./Pages/Stage/CreateStage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
+import Progression from "./Pages/Progression/Progression";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Stack.Screen name="StageScreen" component={Stage} options={{headerShown:false}}/>
         <Stack.Screen name="CreateStageScreen" component={CreateStage} options={{headerShown:false}}/>
         <Stack.Screen name="LeaderboardScreen" component={Leaderboard} options={{headerShown:false}}/>
+        <Stack.Screen name="ProgressionScreen" component={Progression} options={{headerShown:false}}/>
         <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown:false}}/>
 
       </Stack.Navigator>

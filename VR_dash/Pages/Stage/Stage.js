@@ -6,6 +6,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Image,
 } from "react-native";
 // 1) change to stage, not all details
 // 2) Add more details button
@@ -78,7 +79,7 @@ const StageScreen = ({ route, navigation }) => {
           <View style={styles.stage_header_container}>
             <View style={styles.stage_id}><Text style={styles.font}>No.</Text></View>
             <View style={styles.stage_name}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.stage_view}><Text style={styles.font}>Select</Text></View>
+            <View style={styles.stage_view}><Text style={styles.font}>Details</Text></View>
           </View>         
             {              
               state.stages &&
@@ -87,14 +88,26 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_inner}>
                   <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                  <View style={styles.stage_view}><Text style={styles.font}>
-                  <div style={BUTTON_WRAPPER_STYLES}>
-                    <button onClick={() => setIsOpen(true)}>Open Model</button>
-                    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-                      Fancy Model
+                  <View style={styles.stage_view}>
+                    <div style={BUTTON_WRAPPER_STYLES}>
+                      <button onClick={() => setIsOpen(true)}>View Details</button>
+                      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                      <View style={styles.container}>
+                        <View style={styles.topContainer}>
+                          <Text style={styles.headingText}>Stage</Text>
+                        </View>                     
+                          <View style={styles.stage_inner}>
+                          <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
+                          <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
+                          <Image style={styles.StageImg} source={require("../../assets/StageImg/" + stage.img)}/>
+                          </View>
+                          <View style={styles.logoutContainer}>
+                            <Text style={styles.logoutText}>Play</Text>
+                          </View>
+                      </View>
                       </Modal>
-                  </div>
-                    </Text></View>
+                    </div>
+                  </View>
                   </View>
                 )
               })
@@ -228,6 +241,10 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif-light",
     fontSize:30,
     color:"#fff",
+  },
+  StageImg: {
+    height: 250,
+    width: 250,
   },
 });
 

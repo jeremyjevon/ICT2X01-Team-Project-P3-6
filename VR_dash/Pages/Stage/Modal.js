@@ -2,6 +2,7 @@ import React from 'react'
 import {
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from "react-native";
 const MODAL_STYLES = {
@@ -29,9 +30,11 @@ export default function Modal({open, children, onClose}){
         <>
         <div style ={OVERLAY_STYLES} />
         <div style={MODAL_STYLES}>
+            <TouchableOpacity>
             <View style={styles.logoutContainer}>
                 <Text style={styles.logoutText} onClick={onClose}>Close</Text>
-            </View>            
+            </View>
+            </TouchableOpacity> 
             {children}
         </div>
         </>

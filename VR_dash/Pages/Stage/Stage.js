@@ -94,16 +94,18 @@ const StageScreen = ({ route, navigation }) => {
                       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                       <View style={styles.container}>
                         <View style={styles.topContainer}>
-                          <Text style={styles.headingText}>Stage</Text>
+                          <Text style={styles.headingText}>Stage Details</Text>
                         </View>                     
                           <View style={styles.stage_inner}>
                           <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
                           <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
                           <Image style={styles.StageImg} source={require("../../assets/StageImg/" + stage.img)}/>
                           </View>
+                          <TouchableOpacity>
                           <View style={styles.logoutContainer}>
                             <Text style={styles.logoutText}>Play</Text>
                           </View>
+                          </TouchableOpacity>
                       </View>
                       </Modal>
                     </div>

@@ -17,7 +17,7 @@ import db, { auth } from "../../firebase";
 
 const StageScreen = ({ route, navigation }) => {
   const[state, setState] = useState({
-    stages: null
+    stages: null,
   })
 
   const getStage = () => {
@@ -57,6 +57,13 @@ const StageScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headingText}>Stage</Text>
+      </View>
+      <View style={styles.topContainer}>
+      <TouchableOpacity onPress={() => navigation.navigate("CreateStageScreen")}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Create Stage</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.stage_container}>

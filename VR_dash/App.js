@@ -13,7 +13,6 @@ import Stage from "./Pages/Stage/Stage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
-
 const Stack =  createStackNavigator();
 
 //Need to nest the tab inside a stack navigatior

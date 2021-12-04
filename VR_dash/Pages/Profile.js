@@ -12,6 +12,9 @@ import { auth } from "../firebase";
 
 /* 
 TODO: 
+1) Pass parameters using state to Home.js (Where the relevant stuff will be retrieved) - HIGH
+    profileName (StudentName)
+2) Another button to "Manage Profile like Netflix (?)" - LOW
 3) Style this ugly ass page - LOW
 */
 const ProfileScreen = ({ navigation }) => {
@@ -31,9 +34,8 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Rick",
-            })}>
+        {/* Pass Profile Selected to Home.js */}
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/rick.png")}
@@ -44,9 +46,8 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Morty",
-            })}>
+        {/* Pass Profile Selected to Home.js */}
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/morty.png")}
@@ -57,9 +58,8 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Summer",
-            })}>
+        {/* Pass Profile Selected to Home.js */}
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/summer.png")}
@@ -70,9 +70,8 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Beth",
-            })}>
+        {/* Pass Profile Selected to Home.js */}
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/beth.png")}

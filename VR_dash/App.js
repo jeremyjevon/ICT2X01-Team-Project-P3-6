@@ -10,6 +10,7 @@ import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
 import Tutorial from "./Pages/Tutorial/Tutorial";
 import Stage from "./Pages/Stage/Stage";
+import CreateStage from "./Pages/Stage/CreateStage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 
@@ -28,6 +29,7 @@ const App = () => {
         <Stack.Screen name="ProfileScreen" component={Profile} options={{headerShown:false}}/>
         <Stack.Screen name="TutorialScreen" component={Tutorial} options={{headerShown:false}}/>
         <Stack.Screen name="StageScreen" component={Stage} options={{headerShown:false}}/>
+        <Stack.Screen name="CreateStageScreen" component={CreateStage} options={{headerShown:false}}/>
         <Stack.Screen name="LeaderboardScreen" component={Leaderboard} options={{headerShown:false}}/>
         <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown:false}}/>
 

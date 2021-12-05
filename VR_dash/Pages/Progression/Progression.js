@@ -8,7 +8,7 @@ const ProgressionScreen = ({ route, navigation }) => {
   const [currentDate, setCurrentDate] = useState("");
 
   function getCurrentTime() {
-    var dateCurrentMoment = moment().format("DD/MM/YYYY hh:mm:ss a");
+    var dateCurrentMoment = moment().format("DD/MM/YYYY hh:mm:ss A");
     setCurrentDate(dateCurrentMoment);
   }
 
@@ -116,7 +116,7 @@ const ProgressionScreen = ({ route, navigation }) => {
         <View style={styles.progressionContainer}>
           <View style={styles.progressionHeaderContainer}>
             <View style={styles.idContainer}>
-              <Text style={styles.font}>ID</Text>
+              <Text style={styles.font}>Student ID</Text>
             </View>
             <View style={styles.nameContainer}>
               <Text style={styles.font}>Name</Text>
@@ -147,9 +147,17 @@ const ProgressionScreen = ({ route, navigation }) => {
               <Text style={styles.font}>{onLoadPendingText_student1}</Text>
             </View>
             <View style={styles.attemptContainer}>
-              <Text style={styles.font}>
-                <button>View</button>
-              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("S1AttemptScreen", {
+                    selectedStudent: route.params.selectedStudent,
+                  })
+                }
+              >
+                <View style={styles.btnContainer}>
+                  <Text style={styles.btnText}>View</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.progressionRowContainer}>
@@ -168,9 +176,17 @@ const ProgressionScreen = ({ route, navigation }) => {
               <Text style={styles.font}>{onLoadPendingText_student2}</Text>
             </View>
             <View style={styles.attemptContainer}>
-              <Text style={styles.font}>
-                <button>View</button>
-              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("S2AttemptScreen", {
+                    selectedStudent: route.params.selectedStudent,
+                  })
+                }
+              >
+                <View style={styles.btnContainer}>
+                  <Text style={styles.btnText}>View</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.progressionRowContainer}>
@@ -189,9 +205,17 @@ const ProgressionScreen = ({ route, navigation }) => {
               <Text style={styles.font}>{onLoadPendingText_student3}</Text>
             </View>
             <View style={styles.attemptContainer}>
-              <Text style={styles.font}>
-                <button>View</button>
-              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("S3AttemptScreen", {
+                    selectedStudent: route.params.selectedStudent,
+                  })
+                }
+              >
+                <View style={styles.btnContainer}>
+                  <Text style={styles.btnText}>View</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
           <View style={styles.progressionRowContainer}>
@@ -210,9 +234,17 @@ const ProgressionScreen = ({ route, navigation }) => {
               <Text style={styles.font}>{onLoadPendingText_student4}</Text>
             </View>
             <View style={styles.attemptContainer}>
-              <Text style={styles.font}>
-                <button>View</button>
-              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("S4AttemptScreen", {
+                    selectedStudent: route.params.selectedStudent,
+                  })
+                }
+              >
+                <View style={styles.btnContainer}>
+                  <Text style={styles.btnText}>View</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -292,7 +324,7 @@ const styles = StyleSheet.create({
     flex: 2,
   },
   idContainer: {
-    flex: 1,
+    flex: 1.1,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
@@ -328,6 +360,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#777",
     paddingLeft: 10,
+  },
+  btnContainer: {
+    height: 25,
+    width: 55,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 5,
+    backgroundColor: "#444",
+  },
+  btnText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 15,
+    color: "#fff",
   },
   homeContainer: {
     height: 50,

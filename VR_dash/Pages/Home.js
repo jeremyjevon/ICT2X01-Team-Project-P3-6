@@ -73,6 +73,19 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
+            onPress={() => navigation.navigate("ProgressionScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
+            <Image
+              style={styles.buttonImages}
+              source={require("../assets/HomepageImg/goal.png")}
+            />
+            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Progression</Text></View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.buttonImagesContainer}>
+          <TouchableOpacity
             onPress={() => navigation.navigate("DashboardScreen", {
               selectedStudent: route.params.selectedStudent,
             })}

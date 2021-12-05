@@ -115,8 +115,8 @@ const StageScreen = ({ route, navigation }) => {
                                 <Text style={styles.headingText}>Stage Details</Text>
                               </View>                     
                                 <View style={styles.stage_inner}>
-                                <View style={styles.stage_id}><Text style={styles.font}>{selectedStage && selectedStage.id}</Text></View>
-                                <View style={styles.stage_name}><Text style={styles.font}>{selectedStage && selectedStage.name}</Text></View>
+                                <View style={styles.stage_name}><Text style={styles.font}>ID: {selectedStage && selectedStage.id}</Text></View>
+                                <View style={styles.stage_name}><Text style={styles.font}>Name: {selectedStage && selectedStage.name}</Text></View>
                                 {/* <View style={styles.stageImg}  style={styles.font}>{selectedStage && selectedStage.img}</Text></View> */}
                                 {/* {console.log(selectedStage && selectedStage.img)} */}
                                 {/* <Image style={styles.StageImg} source={
@@ -124,6 +124,10 @@ const StageScreen = ({ route, navigation }) => {
                                 {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/triangle.png")}/> */}
                                 {/* <Image style={styles.StageImg} source={require(selectedStage && selectedStage.img )}/> */}
                                 {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/" + (selectedStage && selectedStage.img).toString()) }/> */}
+                                </View>
+                                <View style={styles.stage_inner}>
+                                  <View style={styles.stage_name}><Text style={styles.font}>EXP: {selectedStage && selectedStage.exp}</Text></View>
+                                  <View style={styles.stage_name}><Text style={styles.font}>Difficulty: {selectedStage && selectedStage.difficulty}</Text></View>
                                 </View>
                                 <TouchableOpacity>
                                 <View style={styles.logoutContainer}>

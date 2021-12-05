@@ -62,6 +62,20 @@ const StageScreen = ({ route, navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [selectedStage, setSelectedStage] = useState(null);
+
+  const expandModal = (stage) => {
+    setSelectedStage(stage);
+    // setSelectedStageimg(stage.img);
+    setModalIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setSelectedStage(null);
+    setModalIsOpen(true);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -90,20 +104,21 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
                   <View style={styles.stage_view}>
                     <div style={BUTTON_WRAPPER_STYLES}>
-                    <TouchableOpacity onPress={() => setIsOpen(true)}>
-                          <View style={styles.detailsContainer}>
-                            <Text style={styles.detailsText}>View Details</Text>
-                          </View> 
+                    <TouchableOpacity onPress={() => expandModal(stage)}>
+                        <View style={styles.detailsContainer}>
+                          <Text style={styles.detailsText}>{stage.name}</Text>
+                        </View> 
                     </TouchableOpacity>  
-                            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+                        <Modal open={modalIsOpen} onRequestClose={closeModal}>
                             <View style={styles.container}>
                               <View style={styles.topContainer}>
                                 <Text style={styles.headingText}>Stage Details</Text>
                               </View>                     
                                 <View style={styles.stage_inner}>
-                                <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
-                                <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                                <Image style={styles.StageImg} source={require("../../assets/StageImg/" + stage.img)}/>
+                                <View style={styles.stage_id}><Text style={styles.font}>{selectedStage && selectedStage.id}</Text></View>
+                                <View style={styles.stage_name}><Text style={styles.font}>{selectedStage && selectedStage.name}</Text></View>
+                                {/* <View style={styles.stageImg}  style={styles.font}>{selectedStage && selectedStage.img}</Text></View> */}
+                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/" + selectedStage && selectedStage.img) }/> */}
                                 </View>
                                 <TouchableOpacity>
                                 <View style={styles.logoutContainer}>
@@ -111,8 +126,7 @@ const StageScreen = ({ route, navigation }) => {
                                 </View>
                                 </TouchableOpacity>
                             </View>
-                            </Modal>
-                                         
+                         </Modal>
                     </div>
                   </View>
                   </View>

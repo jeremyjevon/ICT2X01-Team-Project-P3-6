@@ -37,7 +37,9 @@ Open an issue on GitHub for any bugs found during Unit Testing and inform the pr
 
 ## User Acceptance Testing
 ### Use Case Diagram
+![image](https://user-images.githubusercontent.com/33014950/144760438-ab84dad8-1cd9-46e3-b903-c99593b37e7d.png)
 ### System State Diagram
+![2x01_diagrams-State Diagram](https://user-images.githubusercontent.com/33014950/144760460-ae347e07-13db-4ee7-9334-743f35079fbd.png)
 ### System Tests (Video ~3 min)
 
 ## Whitebox Testing

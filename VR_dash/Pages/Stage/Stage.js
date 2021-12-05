@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Linking, 
 } from "react-native";
 
 import db, { auth } from "../../firebase";
@@ -73,12 +74,21 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_inner}>
                   <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                  <View style={styles.stage_view}><Text style={styles.font}><button>View</button></Text></View>
+                 
+                  <View style={styles.stage_view}>
+                    <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
+                      <View style={styles.stage_play}>
+                        <Text style={styles.stagetext}>Start Game</Text>
+                      </View>
+                    </TouchableOpacity>
+                    {/* <Text style={styles.font}>
+                      <button onPress={() => Linking.openURL('http://localhost:8888')}>Testing</button>
+                    </Text> */}
+                  </View>
                   </View>
                 )
               })
             }
-
         </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -201,6 +211,21 @@ const styles = StyleSheet.create({
   logoutText: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
+    color: "#fff",
+  },
+  stage_play: {
+    height: 24,
+    width: 100,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+    backgroundColor: "#808080",
+  },
+  stagetext: {
+    fontFamily: "sans-serif-light",
+    fontSize: 20,
     color: "#fff",
   },
   font: {

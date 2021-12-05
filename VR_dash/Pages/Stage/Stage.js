@@ -73,7 +73,7 @@ const StageScreen = ({ route, navigation }) => {
 
   const closeModal = () => {
     setSelectedStage(null);
-    setModalIsOpen(true);
+    setModalIsOpen(false);
   }
 
   return (
@@ -106,7 +106,7 @@ const StageScreen = ({ route, navigation }) => {
                     <div style={BUTTON_WRAPPER_STYLES}>
                     <TouchableOpacity onPress={() => expandModal(stage)}>
                         <View style={styles.detailsContainer}>
-                          <Text style={styles.detailsText}>{stage.name}</Text>
+                          <Text style={styles.detailsText}>View Details</Text>
                         </View> 
                     </TouchableOpacity>  
                         <Modal open={modalIsOpen} onRequestClose={closeModal}>
@@ -118,7 +118,12 @@ const StageScreen = ({ route, navigation }) => {
                                 <View style={styles.stage_id}><Text style={styles.font}>{selectedStage && selectedStage.id}</Text></View>
                                 <View style={styles.stage_name}><Text style={styles.font}>{selectedStage && selectedStage.name}</Text></View>
                                 {/* <View style={styles.stageImg}  style={styles.font}>{selectedStage && selectedStage.img}</Text></View> */}
-                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/" + selectedStage && selectedStage.img) }/> */}
+                                {/* {console.log(selectedStage && selectedStage.img)} */}
+                                {/* <Image style={styles.StageImg} source={
+                                  ()=>require(selectedStage && selectedStage.img)}/> */}
+                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/triangle.png")}/> */}
+                                {/* <Image style={styles.StageImg} source={require(selectedStage && selectedStage.img )}/> */}
+                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/" + (selectedStage && selectedStage.img).toString()) }/> */}
                                 </View>
                                 <TouchableOpacity>
                                 <View style={styles.logoutContainer}>

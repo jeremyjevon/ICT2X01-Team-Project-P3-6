@@ -24,7 +24,7 @@ const MODAL_STYLES = {
     backgroundColor: 'rgba(0, 0, 0, .7)',
     zIndex: 1000
   }
-export default function Modal({open, children, onClose}){
+export default function Modal({open, children, onRequestClose}){
     if(!open) return null
     return(
         <>
@@ -32,7 +32,7 @@ export default function Modal({open, children, onClose}){
         <div style={MODAL_STYLES}>
             <TouchableOpacity>
             <View style={styles.logoutContainer}>
-                <Text style={styles.logoutText} onClick={onClose}>Close</Text>
+                <Text style={styles.logoutText} onClick={onRequestClose}>Close</Text>
             </View>
             </TouchableOpacity> 
             {children}

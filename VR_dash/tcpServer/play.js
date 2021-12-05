@@ -10,6 +10,7 @@ var serport      = "/dev/tty.HC-06";
 var rate         = 9600;
 var serports     = [];
 var fs           = require('fs');
+const { request } = require('http');
 const SerialPort = require('serialport');
 
 var express = require('express'),

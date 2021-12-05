@@ -5,10 +5,13 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Button, 
   Linking, 
 } from "react-native";
 
 import db, { auth } from "../../firebase";
+
+const gameServerURL = "http://localhost:5000";
 
 const StageScreen = ({ route, navigation }) => {
   const[state, setState] = useState({
@@ -48,6 +51,27 @@ const StageScreen = ({ route, navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+
+  const onLoadGameStageCred = async (event) => {
+    student_name = route.params.selectedStudent;
+    try {
+      const response = await axios.post(`${gameServerURL}/user`, {
+        student_name, 
+        stagelevel, 
+      });
+      if (response.status === 201){
+        alert(` Let's Play!`);
+        setIsLoading(false);
+      }
+      else {
+        throw new Error("An error has occured");
+      }
+    }
+    catch (error) {
+      alert("An error has occured");
+      setIsLoading(false);
+    }
+  }
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -76,14 +100,13 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
                  
                   <View style={styles.stage_view}>
-                    <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
-                      <View style={styles.stage_play}>
-                        <Text style={styles.stagetext}>Start Game</Text>
-                      </View>
-                    </TouchableOpacity>
-                    {/* <Text style={styles.font}>
-                      <button onPress={() => Linking.openURL('http://localhost:8888')}>Testing</button>
-                    </Text> */}
+                    <Text style={styles.font}>
+                      <Button 
+                      title="Let's Play"
+                      style={styles.playButton}
+                      onPress={() => Linking.openURL('http://localhost:8888')}
+                      />
+                    </Text>
                   </View>
                   </View>
                 )
@@ -225,8 +248,11 @@ const styles = StyleSheet.create({
   },
   stagetext: {
     fontFamily: "sans-serif-light",
-    fontSize: 20,
+    fontSize: 18,
     color: "#fff",
+  },
+  playButton: {
+    padding: 10,
   },
   font: {
     fontFamily: "sans-serif-light",

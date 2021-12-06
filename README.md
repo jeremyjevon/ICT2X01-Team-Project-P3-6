@@ -3,7 +3,8 @@ A ICT2101/2201 Project by Team Fast and Furious
  
 ## How to Run Vroom Vroom
 ### Dependencies
-The full list of Vroom Vroom dependencies can be found in package.json.  
+The full list of Vroom Vroom dependencies can be found in
+[package.json](https://github.com/jeremyjevon/ICT2X01-Team-Project-P3-6/blob/ccfe7609e8c00df77628cdd539a53ce8186461f2/VR_dash/package.json)  
 Users will be required to install the following dependencies before being able to play the game.
 * [Node.js v16.13.0](https://nodejs.org/en/download/)
 * [Node Version Management Untility for Windows](https://github.com/coreybutler/nvm-windows)
@@ -12,8 +13,6 @@ Upon navigating to the project folder ```VR_dash```, the following command must 
 ```
 npm install
 ```
-
-### Access
 After installing the required dependencies, users will be able to play Vroom Vroom by navigating to ```VR_dash``` and run the command:
 ```
 npm start

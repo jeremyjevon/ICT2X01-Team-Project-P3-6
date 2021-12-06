@@ -159,7 +159,7 @@ function chekmsg(data) {
     commandmsg = "Slowing down... Hang Tight!"
   }
   else {
-    commandmsg = "I don't understnad that command..."
+    commandmsg = "I don't understand that command..."
   }
   var statusmsg = document.getElementById("status-val");
   statusmsg.innerHTML = commandmsg;
@@ -168,8 +168,7 @@ function send_msg(data) {
   chekmsg(data); 
   var txt = document.getElementById("msg").value;
   txt = txt + data;
-  checkmsg(txt);
-
+  chekmsg(txt);
   socket.emit('send', { Data: txt} );
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();
@@ -187,7 +186,6 @@ function now() {
 var text   = document.getElementById('text');
 var socket = io.connect('http://localhost:8888');
 socket.on('data', function(data) {
-//console.log(JSON.stringify(data));
   var msgs  = document.getElementById("text");
   var txt   = msgs.innerHTML;
   var rep   = data.data.replace(/\x0D\x0A/g,"<br />");
@@ -201,6 +199,7 @@ document.getElementById('msg').addEventListener('keypress', function(event) {
 });
 document.sendform.msg.focus();
 </script>
+
 <!-- Javascript bundle for (Bootstrap)-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

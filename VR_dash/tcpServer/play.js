@@ -12,14 +12,15 @@ var serports     = [];
 var fs           = require('fs');
 const SerialPort = require('serialport');
 
-var express = require('express'),
-    app    = express(),
-    server = require('http').Server(app),
-    io     = require('socket.io')(server),
-    port   = 8888;
+/* Play Server configuration */ 
+var express = require('express');
+var app    = express();
+var server = require('http').Server(app);
+var io     = require('socket.io')(server);
+var port   = 8888;
 
 server.listen(port, () => console.log('Server Listening on port' + port))
- 
+
 app.get('*', function(req, res){
   fs.readFile(__dirname + '/index.html','utf8', function (err, data) {
     if (err) {
@@ -31,24 +32,44 @@ app.get('*', function(req, res){
     res.end(result);
   });
 });
- 
+
+
+/* WebSocket Configuration to receive data from website */
 io.on('connection', onConnection);
- 
 var connectedSocket = null;
 function onConnection(socket) {  
   connectedSocket = socket;
+  console.log("Connected socket:", connectedSocket);
   connectedSocket.on('send', function (data) {
     console.log(data);
     serport.write(data.Data);
   });
- }
- 
+  connectedSocket.on('test event', function (data) {
+    console.log('serverserver data', data);
+    socket.emit('test resp', data + "1")
+  });
+  connectedSocket.on('login', function(userdata){
+    socket.handshake.session.userdata = userdata;
+    socket.handshake.session.save()
+    console.log(userdata)
+  });
+  connectedSocket.on('logout',function(userdata){
+    if(socket.handshake.session.userdata){
+      delete socket.handshake.session.userdata;
+      socket.handshake.session.save(); 
+      console.log(userdata)
+    }
+  })
+}
+
+/* Sending Data with Serial Port */ 
 if (process.argv.length > 2) {
   console.log(process.argv);
   serports.push(process.argv[2]);
   if (process.argv.length > 3) rate = parseInt(process.argv[3]);
 }
- 
+
+/* Serial Port Configurations for Server */ 
 SerialPort.list().then(ports => {
   ports.forEach(function(port) {
     if (typeof port['manufacturer'] !== 'undefined') {
@@ -57,7 +78,7 @@ SerialPort.list().then(ports => {
     }
   });
   if (serports.length == 0) {
-    console.log("No serial ports found!");
+    console.log("Serial Port Not found.");
     process.exit();
   }
   serport = new SerialPort(serports[0], {  baudRate: rate })
@@ -68,5 +89,4 @@ SerialPort.list().then(ports => {
     console.log(data.toString('utf8'));
     io.emit('data', { data: data.toString('utf8') });
   })
- 
 });

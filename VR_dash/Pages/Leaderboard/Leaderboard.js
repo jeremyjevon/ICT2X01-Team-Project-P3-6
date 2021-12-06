@@ -137,7 +137,7 @@ const LeaderboardScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })}
           >
           <View style={styles.homeContainer}>

@@ -87,7 +87,7 @@ const DashboardScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedStudent: route.params.selectedUser,
             })
           }
         >
@@ -95,6 +95,7 @@ const DashboardScreen = ({ route, navigation }) => {
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>
         </TouchableOpacity>
+
         <TouchableOpacity onPress={handleSignOut}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Logout</Text>

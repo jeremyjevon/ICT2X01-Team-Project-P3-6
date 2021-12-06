@@ -337,7 +337,7 @@ const S2AttemptScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("ProgressionScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedStudent: user,
             })
           }
         >

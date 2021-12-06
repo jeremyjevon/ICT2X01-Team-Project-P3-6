@@ -5,6 +5,10 @@ import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import db, { auth } from "../firebase";
 
 
+// when switching user or clicking on any user (either student or proctor) on Profile.js page, 
+// it will redirect user to this authenticate page where 
+// they have to first input their individual pins then they are able to access the home.js
+
 const AuthenticateSwitchUserScreen = ({ route }) => {
     const navigation = useNavigation();  
     const user = route.params.selectedUser;
@@ -12,6 +16,7 @@ const AuthenticateSwitchUserScreen = ({ route }) => {
     const [currentPin, setCurrentPin] = useState("");
     const [inCurrentPin, setInCurrentPin] = useState("");
 
+    //retrieve stored pin from db
     const getCurrentPin = () => {
         db.collection(auth.currentUser.uid)
         .doc(user)
@@ -26,24 +31,22 @@ const AuthenticateSwitchUserScreen = ({ route }) => {
     }, []); 
 
     const handleChangeUser = () => {
-        
-        // validate pin
-        if (currentPin == inCurrentPin) {
-            navigation.navigate("HomeScreen", {
-                selectedUser: user});
-        }
-        else if (inCurrentPin == "") { 
-          alert("Blank input. Please enter a pin.");
-        }
-        else { 
-          alert("Incorrect pin. Please enter a valid pin.");
-        }
+      // validate pin and throw error messages
+      if (currentPin == inCurrentPin) {
+          navigation.navigate("HomeScreen", {
+            selectedUser: user});
+      }
+      else if (inCurrentPin == "") { 
+        alert("Blank input. Please enter a pin.");
+      }
+      else { 
+        alert("Incorrect pin. Please enter a valid pin.");
+      }
     };  
 
-     return (
-    <View style={styles.container}>
-      <View style={styles.topContainer}>
-       
+    return (
+      <View style={styles.container}>
+        <View style={styles.topContainer}>
         <Text style={styles.headingText}>Switch User</Text>
 
         <Text style={styles.subHeadingText}>
@@ -61,7 +64,6 @@ const AuthenticateSwitchUserScreen = ({ route }) => {
             secureTextEntry
           />
 
-          
           <TouchableOpacity onPress={handleChangeUser}>
             <View style={styles.button}>
               <Text style={styles.buttonText}>Enter</Text>
@@ -78,7 +80,6 @@ const AuthenticateSwitchUserScreen = ({ route }) => {
         </TouchableOpacity>
         </View>
       </View>
-      
     </View>
   );
 };
@@ -109,12 +110,15 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif-light",
     fontSize: 30,
     color: "#FFF",
+    margin: 15,
   },
   subHeadingText: {
     fontFamily: "sans-serif-light",
     fontSize: 20,
     color: "#FFF",
+    margin: 15,
   },
+
   inputContainer: {
     justifyContent: "center",
     flexDirection: "column",
@@ -135,6 +139,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#FFF",
   },
+
   button: {
     width: 500,
     height: 50,
@@ -146,7 +151,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin:25,
   },
-  
   buttonText: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
@@ -164,8 +168,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#444",
     borderRadius:10,
   },
-
- 
 });
 
 export default AuthenticateSwitchUserScreen;

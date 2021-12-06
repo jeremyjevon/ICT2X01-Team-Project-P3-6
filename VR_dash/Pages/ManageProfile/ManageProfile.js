@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import db, { auth } from "../../firebase";
 
+// Manage Profile Page has been added to allow both students and proctor to change their respective pins 
+// and then have it updated in the database, change is reflected immediately
 
 const ManageProfileScreen = ({ route }) => {
   
@@ -13,10 +15,8 @@ const ManageProfileScreen = ({ route }) => {
   const [currentPin, setCurrentPin] = useState("");
   const [inCurrentPin, setInCurrentPin] = useState("");
   const [inNewPin, setInNewPin] = useState("");
-  // const [newPin, setNewPin] = useState("");
 
-  // let self = this; // i use "self" to get around scope issues
-
+  //retrieve stored pin from db
   const getCurrentPin = () => {
     db.collection(auth.currentUser.uid)
       .doc(user)
@@ -31,18 +31,14 @@ const ManageProfileScreen = ({ route }) => {
   }, []); 
 
   const handleUpdate = () => {
-    
-    // console.log(currentPin);
-    // console.log(inCurrentPin);  
-    // console.log(inNewPin);
-
-    // validate pin
+    // validate pin and throw error messages
     if (inNewPin == "") { 
       alert("Blank input(s). Please enter pin(s).");
     } 
     else if (inCurrentPin == "") { 
       alert("Blank input(s). Please enter pin(s).");
     }
+    //update db w new pin 
     else if (inNewPin != null && currentPin == inCurrentPin) {
         db.collection(auth.currentUser.uid)
         .doc(user)
@@ -127,21 +123,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#222",
   },
-  bottomContainer: {
-    flex: 1,
-    alignItems: "center",
-  },
 
   headingText: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
     color: "#FFF",
+    margin: 15,
   },
   subHeadingText: {
     fontFamily: "sans-serif-light",
     fontSize: 20,
     color: "#FFF",
+    margin: 15,
   },
+
   inputContainer: {
     justifyContent: "center",
     flexDirection: "column",
@@ -162,6 +157,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "#FFF",
   },
+
   button: {
     width: 500,
     height: 50,
@@ -173,7 +169,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin:25,
   },
-  
   buttonText: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
@@ -191,8 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor:"#444",
     borderRadius:10,
   },
-
- 
 });
 
 export default ManageProfileScreen;

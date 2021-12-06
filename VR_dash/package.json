@@ -10,6 +10,7 @@
     "start-play6": "(cd tcpServer && node play.js COM6 9600) & npm run start",
     "start-play7": "(cd tcpServer && node play.js COM7 9600) & npm run start",
     "start-play8": "(cd tcpServer && node play.js COM8 9600) & npm run start"
+    "build-dev": "(cd tcpServer && npm install) & npm install"
   },
   "dependencies": {
     "@react-navigation/core": "^6.1.0",

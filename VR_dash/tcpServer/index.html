@@ -166,9 +166,10 @@ function chekmsg(data) {
 }
 function send_msg(data) {
   var txt = document.getElementById("msg").value;
-  txt = txt + data;
-  chekmsg(txt);
+  txt = txt + data + "\n";
+  chekmsg(txt.toString('utf8'));
   socket.emit('send', { Data: txt} );
+  console.log(txt);
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();
 }

@@ -54,13 +54,60 @@ Open an issue on GitHub for any bugs found during Unit Testing and inform the pr
 ### System State Diagram
 ![2x01_diagrams-State Diagram](https://user-images.githubusercontent.com/33014950/144760460-ae347e07-13db-4ee7-9334-743f35079fbd.png)
 ### System Tests (Video ~3 min)
+System test UAT video is available [Here](https://youtu.be/q9i8BxcArZI)
 
 ## Whitebox Testing
 ### Selected Class
+Simple yet extremely important puzzle of our project is the```chekmsg()``` function. It is responsible for validating and communication of data between the robotic car and our website. The team developed a mockServer that uses sockets to simulate a connection with the robotic car. With the mockServer, we can simulate sending of commands between our website and the robotic car without the use of the robotic car. We can also ensure that the data is transmitted and read on the socket that the robotic car is connected to. This eliminates the most of the possiblity of a connection issue between the robotic car and website. 
+
+<img width="400" alt="Selectedclass" src="https://user-images.githubusercontent.com/26267783/144914070-2d6f0957-a378-46aa-b9f7-f50a5be80ce7.png">
+
 ### Test Cases
+The team adopted a manual approach to testing. Below is an except of 1 of our 8 test cases. As they are relatively similar, we will not show all of them in this document. 
+
+| Tests  | Description  | Web to Car command  | Car Received  | Input Type | Status |
+| :------------ |:--------------- |:--------------- |:--------------- | :-----:| :-----:|
+| Test(1)      | Test Right command | right | right | Valid | Pass |
+| Test(2)      | Test Left command | left | left | Valid | Pass |
+| Test(3)      | Test Start command | start | start | Valid | Pass |
+| Test(4)      | Test Stop command | stop | stop | Valid | Pass |
+| Test(5)      | Test Reverse command | reve | reve | Valid | Pass |
+| Test(6)      | Test Slow command | slow | slow | Valid | Pass |
+| Test(7)      | Test Speed command | speed | speed | Valid | Pass |
+| Test(8)      | Test Wrong command | ilove2x01 | ilove2x01 | Invalid | Pass |
+
+<img width="400" alt="Test1" src="https://user-images.githubusercontent.com/26267783/144911146-d532a31c-dc30-428a-82cd-2a9a4d67405b.png">
+<img width="400" alt="Test8" src="https://user-images.githubusercontent.com/26267783/144913752-2fa1804f-bbda-4d50-9a3c-e0d95473fe1b.png">
+
+
 ### Statistics
+* Derived CFG
+* Full Path and Branch Coverage
+
+<img width="300" alt="CFG" src="https://user-images.githubusercontent.com/26267783/144909315-05fc6f98-e425-441e-843e-2c89127bb5b2.png">
+
+#### Calculations: 
+
+```Number of Nodes: 11```
+
+```Number of Edges: 17```
+
+```Cylomatic Complexity V(G):17 - 11 + 2(1) = 8```
+
 ### Test Suite Instructions
+
+A test script has been configured. Simply ensure you are in the ```vr_dash``` directory of the project. 
+
+To run the test suite:
+```npm run test```
+
+<img width="400" alt="Test_results" src="https://user-images.githubusercontent.com/26267783/144915151-c44ac483-ad94-4871-817d-3d529aca9a72.png">
+
+As the results were calculated manually, the numbers will remain the same for this specific test configuration. 
+
 ### Running the Test Case (Animated Gif or Video ~1 min)
+https://user-images.githubusercontent.com/26267783/144909234-ce4371d2-7191-4921-be5b-6691814cb49d.mov
+
 
 ## Additional Documentation
 ### Updated Gantt Chart

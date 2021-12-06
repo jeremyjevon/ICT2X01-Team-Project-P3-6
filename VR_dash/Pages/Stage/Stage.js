@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Modal from './Modal';
-import { useNavigation } from "@react-navigation/core";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
-  Image,
 } from "react-native";
-// 1) change to stage, not all details
-// 2) Add more details button
-// 3) retrieve more details
-// 4) Add play stage button
-// =========================
-// 1) Create stage page
 
 import db, { auth } from "../../firebase";
 
@@ -24,7 +16,6 @@ const BUTTON_WRAPPER_STYLES = {
 
 
 const StageScreen = ({ route, navigation }) => {
-  const [isOpen, setIsOpen] = useState(false)
   const[state, setState] = useState({
     stages: null,
   })
@@ -51,8 +42,6 @@ const StageScreen = ({ route, navigation }) => {
   useEffect(() => {
     onScreenLoad();
   }, []);
-
-  const navigate = useNavigation();
   
   const handleSignOut = () => {
     auth
@@ -67,7 +56,6 @@ const StageScreen = ({ route, navigation }) => {
 
   const expandModal = (stage) => {
     setSelectedStage(stage);
-    // setSelectedStageimg(stage.img);
     setModalIsOpen(true);
   }
 
@@ -117,13 +105,6 @@ const StageScreen = ({ route, navigation }) => {
                                 <View style={styles.stage_inner}>
                                 <View style={styles.stage_name}><Text style={styles.font}>ID: {selectedStage && selectedStage.id}</Text></View>
                                 <View style={styles.stage_name}><Text style={styles.font}>Name: {selectedStage && selectedStage.name}</Text></View>
-                                {/* <View style={styles.stageImg}  style={styles.font}>{selectedStage && selectedStage.img}</Text></View> */}
-                                {/* {console.log(selectedStage && selectedStage.img)} */}
-                                {/* <Image style={styles.StageImg} source={
-                                  ()=>require(selectedStage && selectedStage.img)}/> */}
-                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/triangle.png")}/> */}
-                                {/* <Image style={styles.StageImg} source={require(selectedStage && selectedStage.img )}/> */}
-                                {/* <Image style={styles.StageImg} source={require("../../assets/StageImg/" + (selectedStage && selectedStage.img).toString()) }/> */}
                                 </View>
                                 <View style={styles.stage_inner}>
                                   <View style={styles.stage_name}><Text style={styles.font}>EXP: {selectedStage && selectedStage.exp}</Text></View>

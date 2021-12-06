@@ -32,7 +32,7 @@ export default function Modal({open, children, onRequestClose}){
         <div style={MODAL_STYLES}>
             <TouchableOpacity>
             <View style={styles.logoutContainer}>
-                <Text style={styles.logoutText} onClick={onRequestClose}>Close</Text>
+                <Text style={styles.logoutText} onPress={onRequestClose}>Close</Text>
             </View>
             </TouchableOpacity> 
             {children}

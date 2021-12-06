@@ -2,7 +2,6 @@
 A ICT2101/2201 Project by Team Fast and Furious
  
 ## How to Run Vroom Vroom
-### Access
 ### Dependencies
 Users will be required to install the following dependencies before being able to play Vroom Vroom.
 * [Node.js v16.13.0](https://nodejs.org/en/download/)
@@ -14,6 +13,10 @@ npm install
 npm install moment
 npm install @react-native-picker/picker
 npm install expo-image-picker
+```
+### Access
+After installing the required dependencies, users will be able to play Vroom Vroom by navigating to ```VR_dash``` and run the command:
+```
 npm start
 ```
 
@@ -43,7 +46,7 @@ All developers must work on their feature branch before committing final changes
 Open an issue on GitHub for any bugs found during Unit Testing and inform the project team.
 * Assign developer and reviewer to resolve bugs found in the code
 #### UAT
-* User Acceptance Testing must be done on the development branch before committing to the main branch 
+* User Acceptance Testing must be done on the development branch before committing to the ```main branch```
 * UAT will be done ```weekly``` with the development team and stakeholders.
 
 

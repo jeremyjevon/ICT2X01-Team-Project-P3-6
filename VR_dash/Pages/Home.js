@@ -6,6 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 
 import { auth } from "../firebase";
@@ -28,14 +29,14 @@ const HomeScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headingText}>
-          Hello {route.params.selectedStudent} !
+          Hello {route.params.selectedUser} !
         </Text>
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TutorialScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })}
           >
             <Image
@@ -47,7 +48,7 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity onPress={() => navigation.navigate("StageScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })}
           >
             <Image
@@ -60,7 +61,7 @@ const HomeScreen = ({ route, navigation }) => {
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("LeaderboardScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })}
           >
             <Image
@@ -73,7 +74,7 @@ const HomeScreen = ({ route, navigation }) => {
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("DashboardScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })}
           >
             <Image
@@ -85,9 +86,21 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
       </View>
       <View style={styles.bottomContainer}>
+       <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
+          <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Start Game</Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Switch User</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("ManageProfileScreen", {
+          selectedUser: route.params.selectedUser,
+          })}>
+        <View style={styles.logoutContainer}>
+            <Text style={styles.logoutText}>Manage User Profile</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={handleSignOut}>

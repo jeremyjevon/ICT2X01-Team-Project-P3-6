@@ -12,6 +12,7 @@ import Tutorial from "./Pages/Tutorial/Tutorial";
 import Stage from "./Pages/Stage/Stage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import ManageProfile from "./Pages/ManageProfile/ManageProfile";
 
 
 const Stack =  createStackNavigator();
@@ -30,6 +31,7 @@ const App = () => {
         <Stack.Screen name="StageScreen" component={Stage} options={{headerShown:false}}/>
         <Stack.Screen name="LeaderboardScreen" component={Leaderboard} options={{headerShown:false}}/>
         <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown:false}}/>
+        <Stack.Screen name="ManageProfileScreen" component={ManageProfile} options={{headerShown:false}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -96,7 +96,7 @@ The team adopted a manual approach to testing. Below is an except of 1 of our 8 
 
 ### Test Suite Instructions
 
-A test script has been configured. Simply ensure you are in the ```vr_dash``` directory of the project. 
+A test script has been configured. Simply ensure you are in the ```vr_dash/tcpServer``` directory of the project. 
 
 To run the test suite:
 ```npm run test```

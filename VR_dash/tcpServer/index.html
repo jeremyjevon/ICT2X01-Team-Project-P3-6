@@ -97,10 +97,10 @@
   <div id="give-me-space">
     <h3>  📡 Command Center:</h3>
     <form id="sendform" name=sendform>
-      <textarea id="msg" name="msg" placeholder="Enter command..."></textarea>
+      <textarea id=msg name="msg" placeholder="Enter command..."></textarea>
     </form>
     <br/>
-    <button type="button" class="btn btn-primary" value="Send" onclick='send_msg("");'>Vroom!</button>
+    <input type="button" class="btn btn-primary" value="Vroom" onclick='send_msg("");'/>
   </div>
 
   <div class="mini-container">
@@ -165,7 +165,6 @@ function chekmsg(data) {
   statusmsg.innerHTML = commandmsg;
 }
 function send_msg(data) {
-  chekmsg(data); 
   var txt = document.getElementById("msg").value;
   txt = txt + data;
   chekmsg(txt);
@@ -186,6 +185,7 @@ function now() {
 var text   = document.getElementById('text');
 var socket = io.connect('http://localhost:8888');
 socket.on('data', function(data) {
+//console.log(JSON.stringify(data));
   var msgs  = document.getElementById("text");
   var txt   = msgs.innerHTML;
   var rep   = data.data.replace(/\x0D\x0A/g,"<br />");
@@ -199,7 +199,6 @@ document.getElementById('msg').addEventListener('keypress', function(event) {
 });
 document.sendform.msg.focus();
 </script>
-
 <!-- Javascript bundle for (Bootstrap)-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

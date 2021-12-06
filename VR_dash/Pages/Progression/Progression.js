@@ -150,7 +150,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S1AttemptScreen", {
-                    selectedStudent: route.params.selectedStudent,
+                    selectedUser: route.params.selectedUser,
                   })
                 }
               >
@@ -179,7 +179,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S2AttemptScreen", {
-                    selectedStudent: route.params.selectedStudent,
+                    selectedUser: route.params.selectedUser,
                   })
                 }
               >
@@ -208,7 +208,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S3AttemptScreen", {
-                    selectedStudent: route.params.selectedStudent,
+                    selectedUser: route.params.selectedUser,
                   })
                 }
               >
@@ -237,7 +237,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S4AttemptScreen", {
-                    selectedStudent: route.params.selectedStudent,
+                    selectedUser: route.params.selectedUser,
                   })
                 }
               >
@@ -253,7 +253,7 @@ const ProgressionScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: route.params.selectedUser,
             })
           }
         >

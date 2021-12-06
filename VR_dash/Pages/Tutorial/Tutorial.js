@@ -8,16 +8,12 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
+import { Video, AVPlaybackStatus } from 'expo-av';
 import { auth } from "../../firebase";
 
-/* 
-TODO: 
-Are we going to actually come up with a video?
--   Placeholder Image here works fine too
-1) Style this ugly af page - MEDIUM
-*/
 const TutorialScreen = ({ route, navigation }) => {
+  const video = React.useRef(null);
+  const [status, setStatus] = React.useState({});
   const navigate = useNavigation();
   const handleSignOut = () => {
     auth
@@ -33,13 +29,24 @@ const TutorialScreen = ({ route, navigation }) => {
         <Text style={styles.headingText}>Tutorial Page</Text>
       </View>
       <View style={styles.middleContainer}>
-          <View style = {styles.embeddedVideoContainer}> <Text style = {{color:"#fff"}}>Embedded Video HERE</Text></View>
+      <Video
+        ref={video}
+        style={styles.embeddedVideoContainer}
+        source={require("../../assets/ict2104-vroomvroom.mp4")}
+        useNativeControls
+        resizeMode="contain"
+        isLooping
+        onPlaybackStatusUpdate={status => setStatus(() => status)}
+      />
       </View>
       <View style={styles.bottomContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
-            })}
-          >
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("HomeScreen", {
+              selectedUser: route.params.selectedUser,
+            })
+          }
+        >
           <View style={styles.homeContainer}>
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>
@@ -80,13 +87,13 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#FFF",
   },
-  embeddedVideoContainer:{
-    width:960,
-    height:540,
-    borderWidth:1,
-    borderColor:"#FFF",
-    justifyContent:"center",
-    alignItems:"center",
+  embeddedVideoContainer: {
+    width: 960,
+    height: 540,
+    borderWidth: 1,
+    borderColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
   },
   homeContainer: {
     height: 50,
@@ -96,8 +103,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 5,
-    backgroundColor:"#444",
-    borderRadius:10,
+    backgroundColor: "#444",
+    borderRadius: 10,
   },
   homeText: {
     fontFamily: "sans-serif-light",

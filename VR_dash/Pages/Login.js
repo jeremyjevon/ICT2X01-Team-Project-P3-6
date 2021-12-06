@@ -12,7 +12,7 @@ const LoginScreen = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         navigation.replace("ProfileScreen");
-        console.log("Transition");
+        console.log("Transition");  
       }
     });
     return unsubscribe;

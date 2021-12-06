@@ -99,7 +99,7 @@ const DashboardScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedStudent: route.params.selectedUser,
             })
           }
         >

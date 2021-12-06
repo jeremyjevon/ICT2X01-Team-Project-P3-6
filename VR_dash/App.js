@@ -13,6 +13,7 @@ import Stage from "./Pages/Stage/Stage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import ManageProfile from "./Pages/ManageProfile/ManageProfile";
+import AuthenticateSwitchUser from "./Pages/AuthenticateSwitchUser";
 
 
 const Stack =  createStackNavigator();
@@ -32,6 +33,7 @@ const App = () => {
         <Stack.Screen name="LeaderboardScreen" component={Leaderboard} options={{headerShown:false}}/>
         <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown:false}}/>
         <Stack.Screen name="ManageProfileScreen" component={ManageProfile} options={{headerShown:false}}/>
+        <Stack.Screen name="AuthenticateSwitchUserScreen" component={AuthenticateSwitchUser} options={{headerShown:false}}/>
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -24,6 +24,8 @@ const ProfileScreen = ({ navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -31,7 +33,7 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
               selectedUser: "RickSanchez",
             })}>
             <Image
@@ -44,7 +46,7 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
               selectedUser: "MortySmith",
             })}>
             <Image
@@ -57,7 +59,7 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
               selectedUser: "Proctor",
             })}>
             <Image
@@ -70,7 +72,7 @@ const ProfileScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
               selectedUser: "SummerSmith",
 
             })}>
@@ -85,7 +87,7 @@ const ProfileScreen = ({ navigation }) => {
         </View>
     
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
               selectedUser: "BethSmith",
             })}>
             <Image

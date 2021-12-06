@@ -1,22 +1,18 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/core";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
-
-import { auth } from "../firebase";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import db, { auth } from "../firebase";
 
 /* 
 TODO: 
 2) Style this ugly ass page - LOW
 */
-const HomeScreen = ({ route, navigation }) => {
-  const navigate = useNavigation();
+const HomeScreen = ({ route }) => {
+  
+  const navigation = useNavigation();
+  const user = route.params.selectedUser;
+ 
   const handleSignOut = () => {
     auth
       .signOut()
@@ -29,14 +25,14 @@ const HomeScreen = ({ route, navigation }) => {
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.headingText}>
-          Hello {route.params.selectedUser} !
+          Hello {user} !
         </Text>
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("TutorialScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedUser: user,
             })}
           >
             <Image
@@ -48,7 +44,7 @@ const HomeScreen = ({ route, navigation }) => {
         </View>
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity onPress={() => navigation.navigate("StageScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedUser: user,
             })}
           >
             <Image
@@ -61,7 +57,7 @@ const HomeScreen = ({ route, navigation }) => {
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("LeaderboardScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedUser: user,
             })}
           >
             <Image
@@ -74,7 +70,7 @@ const HomeScreen = ({ route, navigation }) => {
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("DashboardScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedUser: user,
             })}
           >
             <Image
@@ -97,7 +93,7 @@ const HomeScreen = ({ route, navigation }) => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("ManageProfileScreen", {
-          selectedUser: route.params.selectedUser,
+          selectedUser: user,
           })}>
         <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Manage User Profile</Text>
@@ -139,6 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#FFF",
   },
+  
   logoutContainer: {
     height: 50,
     width: 500,

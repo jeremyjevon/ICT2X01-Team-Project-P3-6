@@ -3,18 +3,16 @@ A ICT2101/2201 Project by Team Fast and Furious
  
 ## How to Run Vroom Vroom
 ### Dependencies
-Users will be required to install the following dependencies before being able to play Vroom Vroom.
+The full list of Vroom Vroom dependencies can be found in package.json.  
+Users will be required to install the following dependencies before being able to play the game.
 * [Node.js v16.13.0](https://nodejs.org/en/download/)
 * [Node Version Management Untility for Windows](https://github.com/coreybutler/nvm-windows)
 
-Upon navigating to the project folder ```VR_dash```, the following commands must be used before the first start-up.
+Upon navigating to the project folder ```VR_dash```, the following command must be used before the initial programme start-up.
 ```
 npm install
-npm install moment
-npm install @react-native-picker/picker
-npm install expo-image-picker
-npm install expo-av
 ```
+
 ### Access
 After installing the required dependencies, users will be able to play Vroom Vroom by navigating to ```VR_dash``` and run the command:
 ```
@@ -53,7 +51,7 @@ Open an issue on GitHub for any bugs found during Unit Testing and inform the pr
 
 ## User Acceptance Testing
 ### Use Case Diagram
-![image](https://user-images.githubusercontent.com/33014950/144760438-ab84dad8-1cd9-46e3-b903-c99593b37e7d.png)
+![Use Case Diagram](https://user-images.githubusercontent.com/27985157/144900691-71233279-aeeb-4dbd-8a75-10c4b1fed41c.png)
 ### System State Diagram
 ![2x01_diagrams-State Diagram](https://user-images.githubusercontent.com/33014950/144760460-ae347e07-13db-4ee7-9334-743f35079fbd.png)
 ### System Tests (Video ~3 min)

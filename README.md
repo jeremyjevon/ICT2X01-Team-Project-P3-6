@@ -23,10 +23,11 @@ npm start
 * Git clone 
 * Can refer to [setup instruction](https://github.com/jeremyjevon/ICT2X01-Team-Project-P3-6/blob/main/vr_dash/README.md) for project. 
 #### Committing changes from development branch
-All developers must work on their feature branch before committing final changes to the development branch
+All developers must work on their feature branch before committing final changes to the development branch ("dev")
 
  ``` For Developer: ```
-* Pull the latest working version
+* Pull the latest working version into your feature branch
+* Feature branches have the format {developer name}/{feature name}
 * Add and commit your changes
 * Push your changes to the development branch.
 * Go to the GitHub repository to initiate a pull request to development branch
@@ -58,7 +59,7 @@ System test UAT video is available [Here](https://youtu.be/q9i8BxcArZI)
 
 ## Whitebox Testing
 ### Selected Class
-Simple yet extremely important puzzle of our project is the```chekmsg()``` function. It is responsible for validating and communication of data between the robotic car and our website. The team developed a mockServer that uses sockets to simulate a connection with the robotic car. With the mockServer, we can simulate sending of commands between our website and the robotic car without the use of the robotic car. We can also ensure that the data is transmitted and read on the socket that the robotic car is connected to. This eliminates the most of the possiblity of a connection issue between the robotic car and website. 
+A simple yet extremely important puzzle piece of our project is the```chekmsg()``` function. It is responsible for validating and communication of data between the robotic car and our website. The team developed a mockServer that uses sockets to simulate a connection with the robotic car. With the mockServer, we can simulate sending of commands between our website and the robotic car without the use of the actual robotic car. We can also ensure that the data is transmitted and read on the socket that the robotic car is connected to correctly. This eliminates the possiblity of a connection issue between the robotic car and website. 
 
 <img width="400" alt="Selectedclass" src="https://user-images.githubusercontent.com/26267783/144914070-2d6f0957-a378-46aa-b9f7-f50a5be80ce7.png">
 
@@ -88,9 +89,9 @@ The team adopted a manual approach to testing. Below is an except of 1 of our 8 
 
 #### Calculations: 
 
-```Number of Nodes: 11```
-
 ```Number of Edges: 17```
+
+```Number of Nodes: 11```
 
 ```Cylomatic Complexity V(G):17 - 11 + 2(1) = 8```
 

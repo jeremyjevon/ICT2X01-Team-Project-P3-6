@@ -40,18 +40,28 @@ const ManageProfileScreen = ({ route }) => {
     if (currentPin == inCurrentPin) {
       db.collection(auth.currentUser.uid)
       .doc(user)
-      .set({pin: inNewPin}) 
+      .update({pin: inNewPin}) 
       .then(() => {
         // //update DB
         // dbRef = db.collection(auth.currentUser.uid).doc(user)
         // dbRef.update(doc.data(pin).pin)
-        console.log("Pin successfully updated!");
+        alert("Pin successfully updated!");
+        navigation.navigate("HomeScreen", {
+          selectedUser: user});
       })
       // .catch((error) => {
       //   console.error("Error: ", error);
       // });
+    } 
+    else if (inCurrentPin == "") { 
+      alert("Blank input(s). Please enter pin(s).");
     }
-    else { alert("Wrong Pin.");}
+    else if (inNewPin == "") { 
+      alert("Blank input(s). Please enter pin(s).");
+    }
+    else { 
+      alert("Invalid pin. Please enter a valid pin.");
+    }
   };  
 
 

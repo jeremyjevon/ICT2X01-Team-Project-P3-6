@@ -32,10 +32,12 @@ const AuthenticateSwitchUserScreen = ({ route }) => {
             navigation.navigate("HomeScreen", {
                 selectedUser: user});
         }
-        // .catch((error) => {
-        //   console.error("Error: ", error);
-        // });
-        else { alert("Wrong Pin.");}
+        else if (inCurrentPin == "") { 
+          alert("Blank input. Please enter a pin.");
+        }
+        else { 
+          alert("Incorrect pin. Please enter a valid pin.");
+        }
     };  
 
      return (

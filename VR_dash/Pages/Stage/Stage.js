@@ -9,11 +9,11 @@ import {
 
 import db, { auth } from "../../firebase";
 
-const BUTTON_WRAPPER_STYLES = {
-  position: 'relative',
-  zIndex: 1
-}
-
+/* Stage Page
+This page display a table of stage from the db.
+A detailed popup view is available at the last column.
+Creation of stage is available at the top of the page.
+*/
 
 const StageScreen = ({ route, navigation }) => {
   const[state, setState] = useState({
@@ -63,6 +63,7 @@ const StageScreen = ({ route, navigation }) => {
     setSelectedStage(null);
     setModalIsOpen(false);
   }
+  const user = route.params.selectedUser
 
   return (
     <View style={styles.container}>
@@ -71,9 +72,8 @@ const StageScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.topContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("CreateStageScreen", {
-              selectedStudent: route.params.selectedStudent,
-            })}
-          >
+              selectedStudent: user
+            })}>
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Create Stage</Text>
           </View>
@@ -91,49 +91,45 @@ const StageScreen = ({ route, navigation }) => {
               state.stages.map( stage =>{
                 return (
                   <View style={styles.stage_inner}>
-                  <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
-                  <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                  <View style={styles.stage_view}>
-                    <div style={BUTTON_WRAPPER_STYLES}>
-                    <TouchableOpacity onPress={() => expandModal(stage)}>
-                        <View style={styles.detailsContainer}>
-                          <Text style={styles.detailsText}>View Details</Text>
-                        </View> 
-                    </TouchableOpacity>  
+                    <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
+                    <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
+                    <View style={styles.stage_view}>
+                      <TouchableOpacity onPress={() => expandModal(stage)}>
+                          <View style={styles.detailsContainer}>
+                            <Text style={styles.detailsText}>View Details</Text>
+                          </View> 
+                      </TouchableOpacity>  
                         <Modal open={modalIsOpen} onRequestClose={closeModal}>
                             <View style={styles.container}>
                               <View style={styles.topContainer}>
                                 <Text style={styles.headingText}>Stage Details</Text>
                               </View>                     
                                 <View style={styles.stage_inner}>
-                                <View style={styles.stage_name}><Text style={styles.font}>ID: {selectedStage && selectedStage.id}</Text></View>
-                                <View style={styles.stage_name}><Text style={styles.font}>Name: {selectedStage && selectedStage.name}</Text></View>
+                                  <View style={styles.stage_name}><Text style={styles.font}>ID: {selectedStage && selectedStage.id}</Text></View>
+                                  <View style={styles.stage_name}><Text style={styles.font}>Name: {selectedStage && selectedStage.name}</Text></View>
                                 </View>
                                 <View style={styles.stage_inner}>
                                   <View style={styles.stage_name}><Text style={styles.font}>EXP: {selectedStage && selectedStage.exp}</Text></View>
                                   <View style={styles.stage_name}><Text style={styles.font}>Difficulty: {selectedStage && selectedStage.difficulty}</Text></View>
                                 </View>
                                 <TouchableOpacity>
-                                <View style={styles.logoutContainer}>
-                                  <Text style={styles.logoutText}>Play</Text>
-                                </View>
+                                  <View style={styles.logoutContainer}>
+                                    <Text style={styles.logoutText}>Play</Text>
+                                  </View>
                                 </TouchableOpacity>
                             </View>
-                         </Modal>
-                    </div>
-                  </View>
+                          </Modal>
+                    </View>
                   </View>
                 )
               })
             }
-
         </View>
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
-            })}
-          >
+              selectedUser: user
+            })}>
           <View style={styles.homeContainer}>
             <Text style={styles.homeText}>Back to Homepage</Text>
           </View>
@@ -174,11 +170,6 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color: "#FFF",
     textDecorationLine:"underline",
-  },
-  timeText:{
-    fontFamily: "sans-serif-light",
-    fontSize: 20,
-    color: "#FFF",
   },
   stage_container: {
     width: "50%",

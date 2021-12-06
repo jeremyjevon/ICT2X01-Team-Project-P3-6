@@ -5,6 +5,7 @@ import moment from "moment";
 import db, { auth } from "../../firebase";
 
 const S3AttemptScreen = ({ route, navigation }) => {
+  const user = route.params.selectedUser;
   const [currentDate, setCurrentDate] = useState("");
 
   function getCurrentTime() {
@@ -205,7 +206,7 @@ const S3AttemptScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("ProgressionScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedStudent: user,
             })
           }
         >

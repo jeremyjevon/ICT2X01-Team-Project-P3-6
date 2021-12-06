@@ -66,7 +66,7 @@ const HomeScreen = ({ route }) => {
         <View style={styles.buttonImagesContainer}>
           <TouchableOpacity
             onPress={() => navigation.navigate("ProgressionScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedStudent: user,
             })}
           >
             <Image

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { auth } from "../../firebase";
 
 const DashboardScreen = ({ route, navigation }) => {
+  const user = route.params.selectedUser;
   const handleSignOut = () => {
     auth
       .signOut()
@@ -87,7 +88,7 @@ const DashboardScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedUser,
+              selectedStudent: user,
             })
           }
         >

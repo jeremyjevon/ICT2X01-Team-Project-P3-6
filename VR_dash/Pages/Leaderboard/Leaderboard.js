@@ -13,6 +13,7 @@ import db, { auth } from "../../firebase";
 
 const LeaderboardScreen = ({ route, navigation }) => {
 
+  const user = route.params.selectedUser;
   const [currentDate, setCurrentDate] = useState("");
 
   function getCurrentTime() {
@@ -137,7 +138,7 @@ const LeaderboardScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: route.params.selectedStudent,
+              selectedUser: user,
             })}
           >
           <View style={styles.homeContainer}>

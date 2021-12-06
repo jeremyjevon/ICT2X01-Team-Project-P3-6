@@ -97,10 +97,10 @@
   <div id="give-me-space">
     <h3>  📡 Command Center:</h3>
     <form id="sendform" name=sendform>
-      <textarea id="msg" name="msg" placeholder="Enter command..."></textarea>
+      <textarea id=msg name="msg" placeholder="Enter command..."></textarea>
     </form>
     <br/>
-    <button type="button" class="btn btn-primary" value="Send" onclick='send_msg("");'>Vroom!</button>
+    <input type="button" class="btn btn-primary" value="Vroom" onclick='send_msg("");'/>
   </div>
 
   <div class="mini-container">
@@ -159,18 +159,17 @@ function chekmsg(data) {
     commandmsg = "Slowing down... Hang Tight!"
   }
   else {
-    commandmsg = "I don't understnad that command..."
+    commandmsg = "I don't understand that command..."
   }
   var statusmsg = document.getElementById("status-val");
   statusmsg.innerHTML = commandmsg;
 }
 function send_msg(data) {
-  chekmsg(data); 
   var txt = document.getElementById("msg").value;
-  txt = txt + data;
-  checkmsg(txt);
-
+  txt = txt + data + "\n";
+  chekmsg(txt.toString('utf8'));
   socket.emit('send', { Data: txt} );
+  console.log(txt);
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();
 }

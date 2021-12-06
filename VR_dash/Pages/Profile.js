@@ -24,6 +24,8 @@ const ProfileScreen = ({ navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -31,54 +33,69 @@ const ProfileScreen = ({ navigation }) => {
       </View>
       <View style={styles.middleContainer}>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Rick",
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
+              selectedUser: "RickSanchez",
             })}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/rick.png")}
             />
             <View style={styles.profileNameContainer}>
-              <Text style={styles.proileName}>Rick Sanchez</Text>
+              <Text style={styles.profileName}>Rick Sanchez</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Morty",
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
+              selectedUser: "MortySmith",
             })}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/morty.png")}
             />
             <View style={styles.profileNameContainer}>
-              <Text style={styles.proileName}>Morty Smith</Text>
+              <Text style={styles.profileName}>Morty Smith</Text>
             </View>
           </TouchableOpacity>
         </View>
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Summer",
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
+              selectedUser: "Proctor",
+            })}>
+            <Image
+              style={styles.profileImg}
+              source={require("../assets/ProfileImg/cry.jpg")}
+            />
+            <View style={styles.profileNameContainer}>
+              <Text style={styles.profileName}>Proctor</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.profileImgContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
+              selectedUser: "SummerSmith",
+
             })}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/summer.png")}
             />
             <View style={styles.profileNameContainer}>
-              <Text style={styles.proileName}>Summer Smith</Text>
+              <Text style={styles.profileName}>Summer Smith</Text>
             </View>
           </TouchableOpacity>
         </View>
+    
         <View style={styles.profileImgContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen", {
-              selectedStudent: "Beth",
+          <TouchableOpacity onPress={() => navigation.navigate("AuthenticateSwitchUserScreen", {
+              selectedUser: "BethSmith",
             })}>
             <Image
               style={styles.profileImg}
               source={require("../assets/ProfileImg/beth.png")}
             />
             <View style={styles.profileNameContainer}>
-              <Text style={styles.proileName}>Beth Smith</Text>
+              <Text style={styles.profileName}>Beth Smith</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -93,6 +110,7 @@ const ProfileScreen = ({ navigation }) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -130,7 +148,7 @@ const styles = StyleSheet.create({
     height: 250,
     width: 250,
   },
-  proileName: {
+  profileName: {
     fontFamily: "sans-serif-light",
     fontSize: 30,
     color: "#FFF",

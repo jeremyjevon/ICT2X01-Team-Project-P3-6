@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigation } from "@react-navigation/core";
+import Modal from './Modal';
 import {
   StyleSheet,
   Text,
@@ -8,6 +8,12 @@ import {
 } from "react-native";
 
 import db, { auth } from "../../firebase";
+
+const BUTTON_WRAPPER_STYLES = {
+  position: 'relative',
+  zIndex: 1
+}
+
 
 const StageScreen = ({ route, navigation }) => {
   const[state, setState] = useState({
@@ -36,8 +42,6 @@ const StageScreen = ({ route, navigation }) => {
   useEffect(() => {
     onScreenLoad();
   }, []);
-
-  const navigate = useNavigation();
   
   const handleSignOut = () => {
     auth
@@ -47,6 +51,19 @@ const StageScreen = ({ route, navigation }) => {
       })
       .catch((error) => alert(error.message));
   };
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [selectedStage, setSelectedStage] = useState(null);
+
+  const expandModal = (stage) => {
+    setSelectedStage(stage);
+    setModalIsOpen(true);
+  }
+
+  const closeModal = () => {
+    setSelectedStage(null);
+    setModalIsOpen(false);
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -67,7 +84,7 @@ const StageScreen = ({ route, navigation }) => {
           <View style={styles.stage_header_container}>
             <View style={styles.stage_id}><Text style={styles.font}>No.</Text></View>
             <View style={styles.stage_name}><Text style={styles.font}>Name</Text></View>
-            <View style={styles.stage_view}><Text style={styles.font}>Select</Text></View>
+            <View style={styles.stage_view}><Text style={styles.font}>Details</Text></View>
           </View>         
             {              
               state.stages &&
@@ -76,7 +93,35 @@ const StageScreen = ({ route, navigation }) => {
                   <View style={styles.stage_inner}>
                   <View style={styles.stage_id}><Text style={styles.font}>{stage.id}</Text></View>
                   <View style={styles.stage_name}><Text style={styles.font}>{stage.name}</Text></View>
-                  <View style={styles.stage_view}><Text style={styles.font}><button>View</button></Text></View>
+                  <View style={styles.stage_view}>
+                    <div style={BUTTON_WRAPPER_STYLES}>
+                    <TouchableOpacity onPress={() => expandModal(stage)}>
+                        <View style={styles.detailsContainer}>
+                          <Text style={styles.detailsText}>View Details</Text>
+                        </View> 
+                    </TouchableOpacity>  
+                        <Modal open={modalIsOpen} onRequestClose={closeModal}>
+                            <View style={styles.container}>
+                              <View style={styles.topContainer}>
+                                <Text style={styles.headingText}>Stage Details</Text>
+                              </View>                     
+                                <View style={styles.stage_inner}>
+                                <View style={styles.stage_name}><Text style={styles.font}>ID: {selectedStage && selectedStage.id}</Text></View>
+                                <View style={styles.stage_name}><Text style={styles.font}>Name: {selectedStage && selectedStage.name}</Text></View>
+                                </View>
+                                <View style={styles.stage_inner}>
+                                  <View style={styles.stage_name}><Text style={styles.font}>EXP: {selectedStage && selectedStage.exp}</Text></View>
+                                  <View style={styles.stage_name}><Text style={styles.font}>Difficulty: {selectedStage && selectedStage.difficulty}</Text></View>
+                                </View>
+                                <TouchableOpacity>
+                                <View style={styles.logoutContainer}>
+                                  <Text style={styles.logoutText}>Play</Text>
+                                </View>
+                                </TouchableOpacity>
+                            </View>
+                         </Modal>
+                    </div>
+                  </View>
                   </View>
                 )
               })
@@ -206,10 +251,27 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#fff",
   },
+  detailsContainer: {
+    height: 50,
+    width: 100,
+    borderWidth: 1,
+    borderColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  detailsText: {
+    fontFamily: "sans-serif-light",
+    fontSize: 15,
+    color: "#fff",
+  },
   font: {
     fontFamily: "sans-serif-light",
     fontSize:30,
     color:"#fff",
+  },
+  StageImg: {
+    height: 250,
+    width: 250,
   },
 });
 

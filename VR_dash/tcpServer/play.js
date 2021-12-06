@@ -39,7 +39,7 @@ io.on('connection', onConnection);
 var connectedSocket = null;
 function onConnection(socket) {  
   connectedSocket = socket;
-  console.log("Connected socket:", connectedSocket);
+  // console.log("Connected socket:", connectedSocket);
   connectedSocket.on('send', function (data) {
     console.log(data);
     serport.write(data.Data);

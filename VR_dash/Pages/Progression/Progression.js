@@ -5,6 +5,7 @@ import moment from "moment";
 import db, { auth } from "../../firebase";
 
 const ProgressionScreen = ({ route, navigation }) => {
+  const user = route.params.selectedUser;
   const [currentDate, setCurrentDate] = useState("");
 
   function getCurrentTime() {
@@ -150,7 +151,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S1AttemptScreen", {
-                    selectedUser: route.params.selectedUser,
+                    selectedStudent: user,
                   })
                 }
               >
@@ -179,7 +180,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S2AttemptScreen", {
-                    selectedUser: route.params.selectedUser,
+                    selectedStudent: user,
                   })
                 }
               >
@@ -208,7 +209,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S3AttemptScreen", {
-                    selectedUser: route.params.selectedUser,
+                    selectedStudent: user,
                   })
                 }
               >
@@ -237,7 +238,7 @@ const ProgressionScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("S4AttemptScreen", {
-                    selectedUser: route.params.selectedUser,
+                    selectedStudent: user,
                   })
                 }
               >
@@ -253,7 +254,7 @@ const ProgressionScreen = ({ route, navigation }) => {
         <TouchableOpacity
           onPress={() =>
             navigation.navigate("HomeScreen", {
-              selectedUser: route.params.selectedUser,
+              selectedStudent: user,
             })
           }
         >

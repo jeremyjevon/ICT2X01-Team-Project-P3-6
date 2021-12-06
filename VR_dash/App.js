@@ -13,7 +13,6 @@ import Stage from "./Pages/Stage/Stage";
 import CreateStage from "./Pages/Stage/CreateStage";
 import Leaderboard from "./Pages/Leaderboard/Leaderboard";
 import Progression from "./Pages/Progression/Progression";
-import Dashboard from "./Pages/Dashboard/Dashboard";
 import ManageProfile from "./Pages/ManageProfile/ManageProfile";
 import AuthenticateSwitchUser from "./Pages/AuthenticateSwitchUser";
 import S1Attempt from "./Pages/Attempt/S1Attempt";
@@ -37,7 +36,6 @@ const App = () => {
         <Stack.Screen name="CreateStageScreen" component={CreateStage} options={{headerShown:false}}/>
         <Stack.Screen name="LeaderboardScreen" component={Leaderboard} options={{headerShown:false}}/>
         <Stack.Screen name="ProgressionScreen" component={Progression} options={{headerShown:false}}/>
-        <Stack.Screen name="DashboardScreen" component={Dashboard} options={{headerShown:false}}/>
         <Stack.Screen name="ManageProfileScreen" component={ManageProfile} options={{headerShown:false}}/>
         <Stack.Screen name="AuthenticateSwitchUserScreen" component={AuthenticateSwitchUser} options={{headerShown:false}}/>
         <Stack.Screen name="S1AttemptScreen" component={S1Attempt} options={{headerShown:false}}/>

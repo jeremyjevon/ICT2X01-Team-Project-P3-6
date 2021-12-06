@@ -53,7 +53,10 @@ const StageScreen = ({ route, navigation }) => {
         <Text style={styles.headingText}>Stage</Text>
       </View>
       <View style={styles.topContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate("CreateStageScreen")}>
+      <TouchableOpacity onPress={() => navigation.navigate("CreateStageScreen", {
+              selectedStudent: route.params.selectedStudent,
+            })}
+          >
           <View style={styles.logoutContainer}>
             <Text style={styles.logoutText}>Create Stage</Text>
           </View>

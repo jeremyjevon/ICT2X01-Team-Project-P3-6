@@ -6,7 +6,10 @@
     "ios": "expo start --ios",
     "unused": "expo start",
     "eject": "expo eject",
-    "start-play": "(cd tcpServer && node play.js COM6 9600) & npm run start"
+    "start-play5": "(cd tcpServer && node play.js COM5 9600) & npm run start",
+    "start-play6": "(cd tcpServer && node play.js COM6 9600) & npm run start",
+    "start-play7": "(cd tcpServer && node play.js COM7 9600) & npm run start",
+    "start-play8": "(cd tcpServer && node play.js COM8 9600) & npm run start"
   },
   "dependencies": {
     "@react-navigation/core": "^6.1.0",
@@ -22,7 +25,9 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
-    "react-native-web": "0.17.1"
+    "react-native-web": "0.17.1",
+    "@react-native-picker/picker": "2.1.0",
+    "expo-image-picker": "~11.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

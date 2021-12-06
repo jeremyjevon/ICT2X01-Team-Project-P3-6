@@ -13,6 +13,7 @@ npm install
 npm install moment
 npm install @react-native-picker/picker
 npm install expo-image-picker
+npm install expo-av
 ```
 ### Access
 After installing the required dependencies, users will be able to play Vroom Vroom by navigating to ```VR_dash``` and run the command:
@@ -63,3 +64,10 @@ Open an issue on GitHub for any bugs found during Unit Testing and inform the pr
 ### Statistics
 ### Test Suite Instructions
 ### Running the Test Case (Animated Gif or Video ~1 min)
+
+## Additional Documentation
+### Updated Gantt Chart
+![M3 Gantt Chart](https://user-images.githubusercontent.com/27985157/144898563-5639012d-c1e4-46f4-8e9d-73a36a38bdb0.png)
+
+### Updated Burndown Chart
+![M3 Burndown Chart](https://user-images.githubusercontent.com/27985157/144898498-b15ed321-4cac-4788-a677-6041053d1eba.png)

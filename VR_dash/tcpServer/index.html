@@ -165,11 +165,9 @@ function chekmsg(data) {
   statusmsg.innerHTML = commandmsg;
 }
 function send_msg(data) {
-  chekmsg(data); 
   var txt = document.getElementById("msg").value;
   txt = txt + data;
   checkmsg(txt);
-
   socket.emit('send', { Data: txt} );
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();

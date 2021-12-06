@@ -1,19 +1,9 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/core";
-import {
-  StyleSheet,
-  Text,
-  Button,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import { auth } from "../../firebase";
 
 const DashboardScreen = ({ route, navigation }) => {
-  const navigate = useNavigation();
-
   const handleSignOut = () => {
     auth
       .signOut()
@@ -28,13 +18,11 @@ const DashboardScreen = ({ route, navigation }) => {
       <View style={styles.firstRowContainer}>
         <Text style={styles.headingText}>Dashboard</Text>
       </View>
-
       <View style={styles.secondRowContainer}>
         <View style={styles.dashboardContainer}>
           <Text style={styles.font}>Game Screen</Text>
         </View>
       </View>
-
       <View style={styles.thirdRowContainer}>
         <View style={styles.analyticsContainer}>
           <View style={styles.moduleContainer}>

@@ -1,95 +1,175 @@
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="utf-8" />
 <title>Let's Play</title>
 <script src="/socket.io/socket.io.js"></script>
+<!-- CSS for Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- Let's get fancy w the fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+<link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/electric-bumper-car.png"/>
 </head>
 <body id="blackbg">
+<!-- Styles -->
 <style>
-#text {
-  font-family: Arial, Verdana, Helvetica, sans-serif;
-  font-size: 14px;
-  color: white;
-  border: 2px solid white;
-  text-transform: none;
-  overflow: auto;
-  text-align: left;
-  margin-top:4px;
-  margin:6px;
-  width:97vw;
-  border: 2px solid white;
-  height:75vh;
-  background-color: black;
-}
-#blackbg {
-  background-color: black;
-  color: white;
-}
-#tosend {
-  background-color: black;
-}
-.myButton {
-        -moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-        -webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-        box-shadow:inset 0px 1px 0px 0px #97c4fe;
-        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0));
-        background:-moz-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
-        background:-webkit-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
-        background:-o-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
-        background:-ms-linear-gradient(top, #3d94f6 5%, #1e62d0 100%);
-        background:linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0',GradientType=0);
-        background-color:#3d94f6;
-        -moz-border-radius:6px;
-        -webkit-border-radius:6px;
-        border-radius:6px;
-        border:1px solid #337fed;
-        display:inline-block;
-        cursor:pointer;
-        color:#ffffff;
-        font-family:Arial;
-        font-size:15px;
-        font-weight:bold;
-        padding:6px 24px;
-        text-decoration:none;
-        text-shadow:0px 1px 0px #1570cd;
-        margin-left:15px;
-}
-.myButton:hover {
-        background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6));
-        background:-moz-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
-        background:-webkit-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
-        background:-o-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
-        background:-ms-linear-gradient(top, #1e62d0 5%, #3d94f6 100%);
-        background:linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
-        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6',GradientType=0);
-        background-color:grey;
-}
-.myButton:active {
-        position:relative;
-        top:1px;
-}
-#car {
-  background-image: url("https://img.favpng.com/21/6/3/cartoon-car-png-favpng-Fiap1M5KaydcrzMgTrvNvxAi7.jpg");
-}
+  #text {
+      font-family: 'Roboto', sans-serif ;
+      font-size: 14px;
+      color: white;
+      border: 2px solid white;
+      text-transform: none;
+      overflow: auto;
+      text-align: left;
+      /* margin:6px; */
+      width: 50%; 
+      height: 300px;
+      background-color: black;
+  }
+  #status {
+    width: 50%;
+    border: 2px solid white;
+    font-size: 84px;
+    color: yellow;
+  }
+  #status-val {
+    font-size: 32px;
+    color: green;
+  }
+  #blackbg {
+    background-color: black;
+    color: white;
+  }
+  #tosend {
+    background-color: black;
+  }
+  #vroom {
+    height: 150px;
+    width: 170px;
+    background-image: url('https://res.cloudinary.com/dufhec86w/image/upload/v1638436622/2101/chek.png');
+    background-size: cover;
+     /* How do I center a div (lol) */ 
+    display: table;
+    margin: 0 auto;
+    border: 1px solid black;
+  } 
+  #msg {
+    font-family: 'Roboto', sans-serif ;
+    color: white;
+    background-color:black; 
+    height: 40px;
+    width: 200px;
+    font-size:20px;
+  }
+  .btn {
+    font-family: 'Roboto', sans-serif; 
+    /* height: 40px;
+    width: 40px; */
+  }
+  #give-me-space {
+    padding-top: 30px;
+  }
+  #smallspace {
+    padding-top: 15px;
+  }
+  .mini-container {
+    width: 100%;
+  }
+  .left-contain {
+    float: left; 
+    width: 40%; 
+  }
+  .right-contain {
+    float: right; 
+    width: 40%;
+  }
 </style>
-<div id=car>test</div>
-<div id=text></div>
-<div id=tosend>
- <form id=sendform name=sendform>
- <textarea style="margin-top:4px; margin:6px; color: white;background-color:black; border:2px solid white; width:97vw; height:10vh; font-size:20px;"
-  id=msg name=msg 
- placeholder="Messages appear in the box above. Type in your message here then click 'Send' or press Enter."></textarea>
- <br /> 
- <input class=myButton type=button name=send  value="Send"  onclick='send_msg("");' />
-</form>
+
+<div class="container">
+  <div id="vroom"></div>
+  <div class="row">
+    <div id="text" class="col-6"></div>
+    <div id="status" class="col-6">Status:
+      <div id="status-val"></input>
+    </div>
+  </div>
+  <div id="give-me-space">
+    <h3>  📡 Command Center:</h3>
+    <form id="sendform" name=sendform>
+      <textarea id="msg" name="msg" placeholder="Enter command..."></textarea>
+    </form>
+    <br/>
+    <button type="button" class="btn btn-primary" value="Send" onclick='send_msg("");'>Vroom!</button>
+  </div>
+
+  <div class="mini-container">
+    <div class="left-contain">
+      <div id="give-me-space"> 
+        <!-- Main commands -->
+        <h3>  🏁 Helper Buttons</h3>
+        <button type="button" class="btn btn-success" value="Send" onclick='send_msg("start");'>Straight</button>
+        <button type="button" class="btn btn-success" value="Send" onclick='send_msg("speed");'>Speed up</button>
+        <button type="button" class="btn btn-warning" value="Send" onclick='send_msg("slow");'>Slow down</button>
+        <!-- Left and right -->
+        <div id="smallspace">
+          <button type="button" class="btn btn-primary" value="Send" onclick='send_msg("left");'>Left</button>
+          <button type="button" class="btn btn-primary" value="Send" onclick='send_msg("right");'>Right</button>
+        </div>
+        <!-- Reverse and stop -->
+        <div id="smallspace">
+          <button type="button" class="btn btn-warning" value="Send" onclick='send_msg("reve");'>Reverse</button>
+          <button type="button" class="btn btn-danger" value="Send" onclick='send_msg("stop");'>Stop</button>
+        </div>
+      </div>
+    </div>
+    <div class="right-contain">
+       <!-- Random -->
+       <div id="give-me-space">
+        <h3>  🧑‍✈️ Random pilot</h3>
+        <button type="button" class="btn btn-info">I'm feeling lucky</button>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
+<!-- Scripts -->
 <script>
+function chekmsg(data) {
+  if (data == "start"){
+    commandmsg = "Moving forward! Watch out!"
+  }
+  else if (data == "speed"){
+    commandmsg = "Full speed ahead! All clear!"
+  }
+  else if (data == "stop"){
+    commandmsg = "Car is stopping."
+  }
+  else if (data == "reve"){
+    commandmsg = "Reversing. Beep.. Beep.."
+  }
+  else if (data == "left"){
+    commandmsg = "Turning left now!"
+  }
+  else if (data == "right"){
+    commandmsg = "Turning right now!"
+  }
+  else if (data == "slow"){
+    commandmsg = "Slowing down... Hang Tight!"
+  }
+  else {
+    commandmsg = "I don't understnad that command..."
+  }
+  var statusmsg = document.getElementById("status-val");
+  statusmsg.innerHTML = commandmsg;
+}
 function send_msg(data) {
+  chekmsg(data); 
   var txt = document.getElementById("msg").value;
   txt = txt + data;
+  checkmsg(txt);
+
   socket.emit('send', { Data: txt} );
   document.getElementById("msg").value = "";
   document.sendform.msg.focus();
@@ -121,5 +201,7 @@ document.getElementById('msg').addEventListener('keypress', function(event) {
 });
 document.sendform.msg.focus();
 </script>
+<!-- Javascript bundle for (Bootstrap)-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

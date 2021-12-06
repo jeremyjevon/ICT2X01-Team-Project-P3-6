@@ -76,19 +76,6 @@ const HomeScreen = ({ route }) => {
             <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Progression</Text></View>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttonImagesContainer}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("DashboardScreen", {
-              selectedUser: user,
-            })}
-          >
-            <Image
-              style={styles.buttonImages}
-              source={require("../assets/HomepageImg/dumbbell.png")}
-            />
-            <View style={styles.buttonTextContainer}><Text style={styles.buttonText}>Dashboard</Text></View>
-          </TouchableOpacity>
-        </View>
       </View>
       <View style={styles.bottomContainer}>
        <TouchableOpacity onPress={() => Linking.openURL('http://localhost:8888')}>
